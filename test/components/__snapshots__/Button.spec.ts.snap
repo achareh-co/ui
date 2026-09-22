@@ -1,0 +1,7 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Button > renders a primary button 1`] = `
+"<button type="button" data-slot="base" class="rounded-md font-medium inline-flex items-center justify-center gap-1.5 select-none disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:cursor-not-allowed aria-disabled:opacity-75 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary transition-colors text-sm px-2.5 py-1.5 bg-primary text-inverted hover:bg-primary/90 active:bg-primary/90">
+  <!--v-if--><span data-slot="label" class="truncate">Save</span>
+</button>"
+`;

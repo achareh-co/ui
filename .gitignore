@@ -1,0 +1,15 @@
+node_modules
+dist
+.nuxt
+.output
+.cache
+coverage
+*.log
+.DS_Store
+components.d.ts
+auto-imports.d.ts
+playgrounds/*/.nuxt
+playgrounds/*/.output
+playgrounds/*/node_modules/.nuxt-ui
+.nuxt-ui
+*.tsbuildinfo

@@ -1,0 +1,12 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Card > renders title, description and body 1`] = `
+"<div data-slot="root" class="rounded-lg overflow-hidden bg-default text-default ring ring-default divide-y divide-default">
+  <div data-slot="header" class="p-4 sm:px-6 space-y-1">
+    <h3 data-slot="title" class="text-highlighted font-semibold text-base">Invoice</h3>
+    <p data-slot="description" class="text-muted text-sm">September</p>
+  </div>
+  <div data-slot="body" class="p-4 sm:p-6 text-default">Body copy</div>
+  <!--v-if-->
+</div>"
+`;

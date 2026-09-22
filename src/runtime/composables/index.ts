@@ -1,0 +1,1 @@
+export { useComponentProps } from './useComponentProps'
