@@ -1,0 +1,17 @@
+---
+description: Vue plugin install path and the three #imports stand-ins
+globs: src/runtime/vue/**/*.ts,src/runtime/plugins/**/*.ts,src/shims/**/*.ts
+alwaysApply: false
+---
+
+# Vue bridge, Nuxt plugins, shims
+
+Maps: `src/runtime/vue/README.md`, `src/runtime/vue/stubs/README.md`, `src/runtime/plugins/README.md`, `src/shims/README.md`.
+
+- `plugin.ts` `install` applies `ui` overrides, then runs `plugins/colors`. Vite `ui({ ui })` does not replace `app.use`.
+- `plugins/colors.ts` only calls `generateColorCss` and `useHead`. Nuxt registers it in `module.ts`; Vue runs it from `install`.
+- Keep `useAppConfig`, `useHead`, and `defineNuxtPlugin` signatures aligned across:
+  - `src/shims/imports.ts` (typecheck, no behavior)
+  - `src/runtime/vue/stubs/imports.ts` (Vite runtime)
+  - `test/mocks/imports.ts` (Vitest)
+- Shims must not touch the DOM. The Vue stub's `useHead` only writes the color `<style>` and must no-op when `document` is missing.

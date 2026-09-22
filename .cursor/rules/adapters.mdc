@@ -1,0 +1,17 @@
+---
+description: Nuxt module and Vite plugin adapters must stay in lockstep
+globs: src/*.ts
+alwaysApply: false
+---
+
+# Adapters
+
+Full map: `src/README.md`.
+
+- `templates.ts` turns `src/theme` exports into `#build/ui/*`, `ui.css`, `ui.static.css`, and `types/ui.d.ts`. Both adapters call `getTemplates`.
+- `module.ts`: alias `#ui`, `addPlugin(colors)`, `addComponentsDir`, `addImports`, templates, Tailwind via `vite:extend`.
+- `unplugin.ts`: write templates to `node_modules/.nuxt-ui`, alias `#build` and `#imports`. `createViteIntegrations` returns real Vite plugins.
+- `vite.ts`: return `[AcharehUIPlugin.vite, ...createViteIntegrations].flat()`. Consumers place `ui()` after `vue()`.
+- Component resolvers stay `enforce: 'post'`. Do not return those plugins from `config()`.
+- Do not re-export `src/runtime/types` from `module.ts`.
+- New `app.config` component keys are added by hand in `appConfigTypes()`.

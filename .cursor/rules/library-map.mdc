@@ -1,0 +1,19 @@
+---
+description: Map of the Achareh UI library layers and where each directory contract lives
+alwaysApply: true
+---
+
+# Library map
+
+`@achareh/ui` is a Vue library with Nuxt and Vite adapters. Theme data, Vue runtime, and build adapters stay apart.
+
+Before editing a file, follow that directory's `README.md`. The index is `AGENTS.md`. If you change a directory's contract, update its README in the same change.
+
+- Classes live in `src/theme/`. Components import `#build/ui/<kebab>`, never `src/theme`.
+- Variant priority: explicit prop, then `withDefaults`, then `app.config.ui.<name>.defaultVariants`, then `theme.defaultVariants` inside `tv()`. Do not put `color` / `size` / `variant` in `withDefaults`.
+- Build changes ship in both `src/module.ts` and `src/unplugin.ts` + `src/vite.ts`.
+- Do not return Vite plugins from a `config()` hook. `ui()` in `src/vite.ts` is a top-level plugin array, and the component resolver stays `enforce: 'post'`.
+- Do not export runtime types from `src/module.ts`.
+- Resolve paths from `import.meta.url` only in `src/module.ts` and `resolveRuntimeDir`.
+- Keep `tailwind-variants` at `3.2.2`.
+- Upstream skills live in `.agents/skills/`. Doc indexes live in `docs/llms/`. They do not override this file or a directory README. Do not import `@nuxt/ui` from the `nuxt-ui` skill.

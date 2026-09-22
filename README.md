@@ -14,6 +14,8 @@ playgrounds/nuxt    مصرف به‌صورت ماژول
 playgrounds/vue     مصرف به‌صورت پلاگین Vite
 ```
 
+نقشهٔ کار هر پوشه در `README.md` همان پوشه است. نقطهٔ ورود ایجنت‌ها [`AGENTS.md`](AGENTS.md) است. داک ابزارها در [`.agents/skills/`](.agents/skills) و ایندکس [`docs/llms/`](docs/llms/README.md) است.
+
 اولویت استایل: `prop` صریح، بعد `app.config.ui`، بعد `defaultVariants` داخل تم. `class` و `ui` با `tailwind-merge` روی کلاس‌های تم می‌نشینند.
 
 ## توسعه

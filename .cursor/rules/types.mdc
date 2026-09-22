@@ -1,0 +1,14 @@
+---
+description: Shared theme types and component prop re-exports
+globs: src/runtime/types/**/*.ts
+alwaysApply: false
+---
+
+# Runtime types
+
+Full map: `src/runtime/types/README.md`.
+
+- `tv.ts` holds `ThemeConfig`, `ComponentConfig`, and `SlotClasses`. Components type `ui` with `SlotClasses`.
+- `index.ts` only re-exports interfaces from the non-setup script block of each SFC.
+- Do not import build-time `src/utils` here.
+- Do not re-export this folder from `src/module.ts`.

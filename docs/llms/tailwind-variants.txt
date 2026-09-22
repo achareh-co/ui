@@ -1,0 +1,36 @@
+# Tailwind Variants
+
+> A first-class variant API for Tailwind CSS — typed, composable, and built for design systems.
+
+Links point at Markdown (`.md`). Drop the suffix for HTML.
+
+## Docs
+
+- [Acknowledgements](https://www.tailwind-variants.org/docs/acknowledgements.md): Credits to the people and open-source projects that inspired and shaped Tailwind Variants.
+- [API Reference](https://www.tailwind-variants.org/docs/api-reference.md): Reference for tv, createTV, VariantProps, cn/cx/cnMerge, and configuration types exported by Tailwind Variants.
+- [Class Resolution](https://www.tailwind-variants.org/docs/class-resolution.md): How Tailwind Variants resolves and merges conflicting utilities with cn, cx, and cnMerge in the default and lite builds.
+- [Comparison](https://www.tailwind-variants.org/docs/comparison.md): Compare Tailwind Variants with Class Variance Authority (CVA), Windstitch, and hand-written class strings for component libraries.
+- [Compound Variants](https://www.tailwind-variants.org/docs/compound-variants.md): Apply extra classes when multiple variant keys match — for example a specific color and size combination.
+- [Configuration](https://www.tailwind-variants.org/docs/configuration.md): Share defaults across recipes with createTV, tweak defaultConfig globally, and customize conflict-resolution merge config.
+- [Default Variants](https://www.tailwind-variants.org/docs/default-variants.md): Set sensible default variant values on a recipe so call sites stay short, then override them only when needed.
+- [Extending](https://www.tailwind-variants.org/docs/extending.md): Compose component recipes with extend — inherit base styles, variants, slots, and defaults without copying definitions.
+- [FAQ](https://www.tailwind-variants.org/docs/faq.md): Answers to common questions about licensing, default vs lite builds, tailwind-merge, slots, TypeScript, and frameworks.
+- [Introduction](https://www.tailwind-variants.org/docs/introduction.md): Learn what Tailwind Variants is, why it exists, and the core features for building typed Tailwind component recipes.
+- [LLMs.txt](https://www.tailwind-variants.org/docs/llms-txt.md): Machine-readable Tailwind Variants docs for AI agents — llms.txt index, full corpus dump, per-page Markdown, and Accept-based content negotiation.
+- [MCP Server](https://www.tailwind-variants.org/docs/mcp-server.md): Query Tailwind Variants docs from AI tools via the Model Context Protocol — list pages, full-text search, and fetch Markdown by path.
+- [Migration](https://www.tailwind-variants.org/docs/migration.md): Upgrade guides for moving between Tailwind Variants major versions, including v2 to v3 and the lite build split.
+- [Overrides](https://www.tailwind-variants.org/docs/overrides.md): Pass one-off class overrides at the call site with class or className without changing the shared recipe.
+- [Quick Start](https://www.tailwind-variants.org/docs/quick-start.md): Install Tailwind Variants, choose default or lite, create your first tv recipe, and set up editor IntelliSense.
+- [Recipes](https://www.tailwind-variants.org/docs/recipes.md): Copy-paste Tailwind Variants recipes for common UI patterns like buttons, alerts, and badges.
+- [Releases](https://www.tailwind-variants.org/docs/releases.md): Notable Tailwind Variants releases and changes, including performance, merge, and API updates.
+- [Responsive](https://www.tailwind-variants.org/docs/responsive.md): Use Tailwind breakpoint prefixes like sm: and md: inside base, variant, and slot class strings — no TV-specific API.
+- [Slots](https://www.tailwind-variants.org/docs/slots.md): Style multi-part components with named slots, per-slot variants, and compound slots from a single recipe.
+- [Tailwind CSS v4](https://www.tailwind-variants.org/docs/tailwind-v4.md): Use Tailwind Variants with Tailwind CSS v4 — content scanning, conflict resolution, and what stays the same in recipes.
+- [TypeScript](https://www.tailwind-variants.org/docs/typescript.md): Extract typed props with VariantProps, work with slotted return types, and keep variant inference reliable.
+- [Variants](https://www.tailwind-variants.org/docs/variants.md): Define base styles and variant keys like color, size, and disabled on a tv recipe for typed call-site props.
+
+## Optional
+
+- [Full documentation](https://www.tailwind-variants.org/llms-full.txt): All pages in one Markdown file
+- [MCP server](https://www.tailwind-variants.org/api/mcp): list_pages, search_docs, get_page
+- [GitHub](https://github.com/heroui-inc/tailwind-variants): Library source

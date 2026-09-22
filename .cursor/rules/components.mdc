@@ -1,0 +1,18 @@
+---
+description: Vue component pattern for runtime SFCs
+globs: src/runtime/components/**/*.vue
+alwaysApply: false
+---
+
+# Components
+
+Full map: `src/runtime/components/README.md`. Copy `Button.vue`.
+
+- Props and slots interfaces go in a non-setup `<script>` so `src/runtime/types/index.ts` can re-export them.
+- `import theme from '#build/ui/<kebab>'`, then `useComponentProps('<key>', _props)`.
+- `const ui = computed(() => tv({ extend: theme, ...(appConfig.ui?.<key> || {}) })(variants))`.
+- Render with Reka `Primitive` and `as`. `data-slot` equals the theme slot key.
+- Root class: `ui.<slot>({ class: [props.ui?.<slot>, props.class] })`.
+- With `inheritAttrs: false`, put `data-slot` before `v-bind="$attrs"`.
+- Do not add Tailwind classes in the SFC. Do not default `color` / `variant` / `size` in `withDefaults`.
+- File name is PascalCase without the `U` prefix.

@@ -1,0 +1,15 @@
+---
+description: useComponentProps merge order against app config
+globs: src/runtime/composables/**/*.ts
+alwaysApply: false
+---
+
+# Composables
+
+Full map: `src/runtime/composables/README.md`.
+
+- `useComponentProps` is a proxy. `ui` is `defu(instance, appConfig.ui[name].slots)` so the instance wins.
+- Any other key uses the prop when it is not `undefined`, otherwise `app.config.ui[name].defaultVariants`.
+- This proxy does not read `theme.defaultVariants`.
+- A new composable used by apps must be exported from `index.ts` and registered in both `module.ts` (`addImports`) and `createViteIntegrations`.
+- Read config through `#imports` `useAppConfig`, not through `src/shims`.
