@@ -121,7 +121,7 @@ interface AppConfigUI {
 declare module '@nuxt/schema' {
   interface AppConfigInput {
     /**
-     * Acme UI theme configuration
+     * Achareh UI theme configuration
      */
     ui?: AppConfigUI
   }

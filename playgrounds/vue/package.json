@@ -1,5 +1,5 @@
 {
-  "name": "@acme/playground-vue",
+  "name": "@achareh/playground-vue",
   "private": true,
   "type": "module",
   "scripts": {
@@ -8,7 +8,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@acme/ui": "workspace:*",
+    "@achareh/ui": "workspace:*",
     "tailwindcss": "catalog:",
     "vue": "catalog:"
   },

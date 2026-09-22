@@ -1,5 +1,5 @@
 {
-  "name": "@acme/playground-nuxt",
+  "name": "@achareh/playground-nuxt",
   "private": true,
   "type": "module",
   "scripts": {
@@ -9,7 +9,7 @@
     "preview": "nuxt preview"
   },
   "dependencies": {
-    "@acme/ui": "workspace:*",
+    "@achareh/ui": "workspace:*",
     "nuxt": "catalog:",
     "tailwindcss": "catalog:",
     "vue": "catalog:"

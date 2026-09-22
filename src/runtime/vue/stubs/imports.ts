@@ -25,7 +25,7 @@ export function useHead(input?: { style?: Array<{ innerHTML?: unknown, key?: str
   }
 
   for (const style of input.style) {
-    const id = style.id || style.key || 'acme-ui-colors'
+    const id = style.id || style.key || 'achareh-ui-colors'
     let el = document.getElementById(id)
     if (!el) {
       el = document.createElement('style')

@@ -1,5 +1,5 @@
 import { createApp } from 'vue'
-import ui from '@acme/ui/vue-plugin'
+import ui from '@achareh/ui/vue-plugin'
 import App from './App.vue'
 import './assets/main.css'
 

@@ -2,7 +2,7 @@ import type { App } from 'vue'
 import colors from '../plugins/colors'
 import { applyUiOverrides } from './stubs/imports'
 
-export interface AcmeUIVuePluginOptions {
+export interface AcharehUIVuePluginOptions {
   ui?: Record<string, any>
 }
 
@@ -17,7 +17,7 @@ function runPlugin(plugin: unknown) {
 }
 
 export default {
-  install(_app: App, options?: AcmeUIVuePluginOptions) {
+  install(_app: App, options?: AcharehUIVuePluginOptions) {
     applyUiOverrides(options?.ui)
     runPlugin(colors)
   }

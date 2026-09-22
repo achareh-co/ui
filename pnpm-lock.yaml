@@ -177,7 +177,7 @@ importers:
 
   playgrounds/nuxt:
     dependencies:
-      '@acme/ui':
+      '@achareh/ui':
         specifier: workspace:*
         version: link:../..
       nuxt:
@@ -192,7 +192,7 @@ importers:
 
   playgrounds/vue:
     dependencies:
-      '@acme/ui':
+      '@achareh/ui':
         specifier: workspace:*
         version: link:../..
       tailwindcss:

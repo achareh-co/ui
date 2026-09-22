@@ -1,4 +1,4 @@
-# Acme UI
+# Achareh UI
 
 اسکلت یک کتابخانه Vue UI با معماری [Nuxt UI](https://github.com/nuxt/ui): تم جدا از کامپوننت، دو آداپتر Nuxt و Vite، و خروجی npm. Vue-only است و React را پوشش نمی‌دهد.
 
@@ -30,19 +30,19 @@ pnpm build
 ## نصب در Nuxt
 
 ```bash
-pnpm add @acme/ui tailwindcss
+pnpm add @achareh/ui tailwindcss
 ```
 
 ```ts
 export default defineNuxtConfig({
-  modules: ['@acme/ui'],
+  modules: ['@achareh/ui'],
   css: ['~/assets/css/main.css']
 })
 ```
 
 ```css
 @import "tailwindcss";
-@import "@acme/ui";
+@import "@achareh/ui";
 ```
 
 ```vue
@@ -68,7 +68,7 @@ export default defineAppConfig({
 
 ```ts
 import vue from '@vitejs/plugin-vue'
-import ui from '@acme/ui/vite'
+import ui from '@achareh/ui/vite'
 
 export default {
   // `ui()` must come after `vue()` so component resolvers see compiled SFCs.
@@ -77,14 +77,14 @@ export default {
 ```
 
 ```ts
-import ui from '@acme/ui/vue-plugin'
+import ui from '@achareh/ui/vue-plugin'
 
 app.use(ui)
 ```
 
 ```css
 @import "tailwindcss";
-@import "@acme/ui";
+@import "@achareh/ui";
 ```
 
 برای autocomplete تم در `tsconfig`، بعد از اولین اجرا این alias را اضافه کنید:

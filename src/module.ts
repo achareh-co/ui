@@ -22,7 +22,7 @@ function registerTemplates(options: ModuleOptions, nuxt: Nuxt) {
 
 export default defineNuxtModule<ModuleOptions>({
   meta: {
-    name: '@acme/ui',
+    name: '@achareh/ui',
     configKey: 'ui',
     compatibility: {
       nuxt: '>=4.1.0'

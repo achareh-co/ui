@@ -9,7 +9,7 @@ import Components from 'unplugin-vue-components/vite'
 import { appConfigFromOptions, getTemplates } from './templates'
 import { defaultOptions, type ModuleOptions } from './utils/defaults'
 
-export interface AcmeUIOptions extends ModuleOptions {
+export interface AcharehUIOptions extends ModuleOptions {
   /** Generate `components.d.ts` and `auto-imports.d.ts`. @default true */
   dts?: boolean
   /** Same shape as Nuxt `app.config.ts` `ui`. */
@@ -33,8 +33,8 @@ function resolveWithExtension(base: string) {
   return `${base}.ts`
 }
 
-export const AcmeUIPlugin = createUnplugin<AcmeUIOptions>((rawOptions = {}) => {
-  const options = defu(rawOptions, defaultOptions) as AcmeUIOptions & { theme: NonNullable<ModuleOptions['theme']> }
+export const AcharehUIPlugin = createUnplugin<AcharehUIOptions>((rawOptions = {}) => {
+  const options = defu(rawOptions, defaultOptions) as AcharehUIOptions & { theme: NonNullable<ModuleOptions['theme']> }
   const appConfig = appConfigFromOptions(options.ui)
   const runtimeDir = resolveRuntimeDir()
   const importsStub = resolveWithExtension(join(runtimeDir, 'vue/stubs/imports'))
@@ -75,24 +75,24 @@ export const AcmeUIPlugin = createUnplugin<AcmeUIOptions>((rawOptions = {}) => {
 
     return [
     {
-      name: 'acme:ui:nuxt-env',
+      name: 'achareh:ui:nuxt-env',
       enforce: 'pre',
       resolveId(id) {
         if (id === '#imports') {
           return importsStub
         }
         if (id === '#build/app.config') {
-          return '\0acme-ui-app-config'
+          return '\0achareh-ui-app-config'
         }
       },
       load(id) {
-        if (id === '\0acme-ui-app-config') {
+        if (id === '\0achareh-ui-app-config') {
           return `export default ${JSON.stringify(appConfig)}\n`
         }
       }
     },
     {
-      name: 'acme:ui:templates',
+      name: 'achareh:ui:templates',
       enforce: 'pre',
       vite: {
         async config(config) {
@@ -103,7 +103,7 @@ export const AcmeUIPlugin = createUnplugin<AcmeUIOptions>((rawOptions = {}) => {
               alias
             },
             optimizeDeps: {
-              exclude: ['@acme/ui']
+              exclude: ['@achareh/ui']
             }
           }
         }
@@ -117,8 +117,8 @@ export const AcmeUIPlugin = createUnplugin<AcmeUIOptions>((rawOptions = {}) => {
  * Vite 7 drops plugins returned from another plugin's `config()` hook, and
  * component resolvers must run after `@vitejs/plugin-vue` compiles the SFC.
  */
-export function createViteIntegrations(rawOptions?: AcmeUIOptions): any[] {
-  const options = defu(rawOptions, defaultOptions) as AcmeUIOptions
+export function createViteIntegrations(rawOptions?: AcharehUIOptions): any[] {
+  const options = defu(rawOptions, defaultOptions) as AcharehUIOptions
   const runtimeDir = resolveRuntimeDir()
 
   const autoImport = options.autoImport !== false && AutoImport({
@@ -161,4 +161,4 @@ export function createViteIntegrations(rawOptions?: AcmeUIOptions): any[] {
   return [tailwindcss(), autoImport, ...componentPlugins].flat(2).filter(Boolean)
 }
 
-export default AcmeUIPlugin
+export default AcharehUIPlugin

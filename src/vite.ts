@@ -1,7 +1,7 @@
-import { AcmeUIPlugin, createViteIntegrations, type AcmeUIOptions } from './unplugin'
+import { AcharehUIPlugin, createViteIntegrations, type AcharehUIOptions } from './unplugin'
 
-export type { AcmeUIOptions }
+export type { AcharehUIOptions }
 
-export default function ui(options?: AcmeUIOptions): any[] {
-  return [AcmeUIPlugin.vite(options ?? {}), ...createViteIntegrations(options)].flat(2)
+export default function ui(options?: AcharehUIOptions): any[] {
+  return [AcharehUIPlugin.vite(options ?? {}), ...createViteIntegrations(options)].flat(2)
 }

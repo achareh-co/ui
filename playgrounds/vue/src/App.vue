@@ -18,7 +18,7 @@ function toggleColorMode() {
             Vue playground
           </p>
           <h1 class="text-highlighted text-2xl font-semibold">
-            Acme UI
+            Achareh UI
           </h1>
         </div>
         <UButton

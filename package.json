@@ -1,5 +1,5 @@
 {
-  "name": "@acme/ui",
+  "name": "@achareh/ui",
   "version": "0.1.0",
   "description": "A Vue UI component library starter modeled on the Nuxt UI architecture.",
   "type": "module",
@@ -81,9 +81,9 @@
   ],
   "scripts": {
     "build": "nuxt-module-build build",
-    "dev:prepare": "nuxt-module-build build --stub && nuxt-module-build prepare && pnpm --filter @acme/playground-nuxt exec nuxt prepare",
-    "dev": "pnpm --filter @acme/playground-nuxt dev",
-    "dev:vue": "pnpm --filter @acme/playground-vue dev",
+    "dev:prepare": "nuxt-module-build build --stub && nuxt-module-build prepare && pnpm --filter @achareh/playground-nuxt exec nuxt prepare",
+    "dev": "pnpm --filter @achareh/playground-nuxt dev",
+    "dev:vue": "pnpm --filter @achareh/playground-vue dev",
     "lint": "eslint .",
     "typecheck": "vue-tsc --noEmit",
     "test": "vitest run",

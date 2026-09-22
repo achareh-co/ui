@@ -12,7 +12,7 @@ export default defineNuxtPlugin(() => {
 
   useHead({
     style: [{
-      key: 'acme-ui-colors',
+      key: 'achareh-ui-colors',
       innerHTML: css,
       tagPriority: 'critical'
     }]
