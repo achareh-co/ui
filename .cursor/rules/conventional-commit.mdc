@@ -1,0 +1,17 @@
+---
+description: Rules for creating commits using Conventional Commit standard
+globs:
+alwaysApply: true
+---
+
+# Conventional Commit Rules
+
+When creating commits, ALWAYS follow the Conventional Commit standard as defined in `.cursor/commands/conventional-commit.md`.
+
+Refer to that file for the complete specification including:
+- Commit message format: `<type>(<scope-branch>): <subject>`
+- Type selection (feat, fix, refactor, perf, docs, test, build, ci, chore, style)
+- Scope-branch usage (exact branch name from `git rev-parse --abbrev-ref HEAD`)
+- Subject formatting rules (imperative, present tense, ≤72 chars)
+- Body and footer guidelines
+- Behavior rules (check staged files, never push automatically)
