@@ -2,6 +2,7 @@ import colors from 'tailwindcss/colors'
 import type { Nuxt, NuxtTemplate } from '@nuxt/schema'
 import { defu } from 'defu'
 import { defaultOptions, getDefaultConfig, type ModuleOptions } from './utils/defaults'
+import { generateBordersCss } from './utils/borders'
 import { generateSpacingCss } from './utils/spacing'
 import { kebabCase, resolveTheme } from './utils/theme'
 import * as themes from './theme'
@@ -37,11 +38,6 @@ export function generateThemeCss(options: ModuleOptions, optionsIn?: { includeSo
   const themeBlock = `@theme default inline {
   ${colorVars.join('\n  ')}
   ${semantic.join('\n  ')}
-  --radius-xs: calc(var(--ui-radius) * 0.5);
-  --radius-sm: var(--ui-radius);
-  --radius-md: calc(var(--ui-radius) * 1.5);
-  --radius-lg: calc(var(--ui-radius) * 2);
-  --radius-xl: calc(var(--ui-radius) * 3);
   --text-color-dimmed: var(--ui-text-dimmed);
   --text-color-muted: var(--ui-text-muted);
   --text-color-toned: var(--ui-text-toned);
@@ -69,9 +65,10 @@ export function generateThemeCss(options: ModuleOptions, optionsIn?: { includeSo
 }`
 
   const spacingBlock = generateSpacingCss()
+  const bordersBlock = generateBordersCss()
 
   if (!optionsIn?.includeSources) {
-    return `${oldNeutralBlock()}\n\n${themeBlock}\n\n${spacingBlock}\n`
+    return `${oldNeutralBlock()}\n\n${themeBlock}\n\n${spacingBlock}\n\n${bordersBlock}\n`
   }
 
   return `@source "./ui";
@@ -87,6 +84,8 @@ ${oldNeutralBlock()}
 ${themeBlock}
 
 ${spacingBlock}
+
+${bordersBlock}
 `
 }
 

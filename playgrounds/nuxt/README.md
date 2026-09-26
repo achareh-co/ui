@@ -10,7 +10,7 @@
 | `app/app.config.ts` | `ui.colors` و در صورت نیاز `defaultVariants`. |
 | `app/app.vue` | پوستهٔ Nuxt. |
 | `app/pages/index.vue` | نمونهٔ `UButton` / `UCard` و کلاس `dark` روی `documentElement`. |
-| `app/assets/css/main.css` | `@import "tailwindcss"` سپس `@import "@achareh/ui"`. کامنت `--ui-spacing-*` نمونهٔ اورراید است. |
+| `app/assets/css/main.css` | `@import "tailwindcss"` سپس `@import "@achareh/ui"`. کامنت `--ui-spacing-*`، `--ui-radius-*` و `--ui-border-width-*` نمونهٔ اورراید است. |
 
 ## قرارداد
 

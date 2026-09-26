@@ -6,7 +6,6 @@
 
 @layer theme {
   :root, :host {
-    --ui-radius: 0.25rem;
     --ui-container: 80rem;
   }
 

@@ -14,5 +14,6 @@ Full map: `src/theme/README.md`.
 - Write complete class strings (`bg-primary`, `text-error`). Palette names (`blue`, `slate`) belong in `app.config.ui.colors` only.
 - Use semantic tokens (`text-default`, `bg-elevated`) and logical directions (`ms`/`me`, `text-start`).
 - Spacing utilities use the Figma step, not Tailwind's 4px grid. `p-8` is 16px. `p-4` is 8px. Do not use fractional steps (`1.5`, `2.5`).
+- Radius and border-width utilities use the Figma name. `rounded-sm` is 8px. `rounded-md` is 12px. `border-xs` is 1px. `border-sm` is 2px.
 - Gate `transition-colors` on `options.theme.transitions`.
 - Add the same key to `AppConfigUI` in `src/templates.ts`.

@@ -1,4 +1,4 @@
 @import "tailwindcss";
 @import "@achareh/ui";
 
-/* :root { --ui-spacing-4: 10px; } */
+/* :root { --ui-spacing-4: 10px; --ui-radius-md: 10px; --ui-border-width-sm: 2px; } */

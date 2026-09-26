@@ -122,6 +122,23 @@ app.use(ui)
 
 `app.config.ui` و `ui({ ui })` این مقیاس را نمی‌گیرند. `@theme { --spacing-4: ... }` هم پل را عوض نمی‌کند، چون یوتیلیتی مستقیم به `--ui-spacing-*` وصل است.
 
+## شعاع و ضخامت border
+
+نام کلاس همان توکن فیگما است. `rounded-sm` برابر ۸px است، نه ۴px پیش‌فرض Tailwind. `rounded-xs` برابر ۴px، `rounded-md` برابر ۱۲px، `rounded-lg` برابر ۱۶px و `rounded-full` برابر ۹۹۹px است.
+
+ضخامت: `border-xs` برابر ۱px، `border-sm` برابر ۲px، `border-md` برابر ۴px، `border-lg` برابر ۸px و `border-none` برابر ۰ است. کلاس `border` همان ۱px (`border-xs`) است. کلاس‌های عددی Tailwind به همان پله‌ها وصل‌اند: `border-0` برابر none، `border-2` برابر sm، `border-4` برابر md و `border-8` برابر lg.
+
+`--ui-radius` دیگر مقیاس را عوض نمی‌کند. برای عوض کردن یک پله، بعد از `@import "@achareh/ui"` بنویسید:
+
+```css
+:root {
+  --ui-radius-md: 10px;
+  --ui-border-width-sm: 2px;
+}
+```
+
+`--ui-radius-md: 10px` یعنی `rounded-md` ده پیکسل می‌شود. `--ui-border-width-xs` روی کلاس `border` هم اعمال می‌شود. پله‌ای که ننویسید روی پیش‌فرض فیگما می‌ماند. `app.config.ui` این مقیاس را نمی‌گیرد.
+
 ## کامپوننت جدید
 
 1. تم را در `src/theme/<name>.ts` بنویسید و از `src/theme/index.ts` export کنید.

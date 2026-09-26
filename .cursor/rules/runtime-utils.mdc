@@ -11,5 +11,5 @@ Full map: `src/runtime/utils/README.md` and `src/runtime/README.md`.
 - `tv()` must keep slot functions after an `app.config` spread and must keep `twMerge`.
 - Do not bump `tailwind-variants` past the `3.2.2` pin.
 - Color math stays in `generateColorCss`. Light semantic shade is 500, dark is 400. `neutral` maps through `old-neutral`.
-- `index.css` owns `--ui-text*`, `--ui-bg*`, `--ui-border*` for `.light` and `.dark`, and imports `#build/ui.css`.
+- `index.css` owns `--ui-text*`, `--ui-bg*`, `--ui-border*` for `.light` and `.dark`, and imports `#build/ui.css`. Radius and border width live in generated `--ui-radius-*` / `--ui-border-width-*`, not `--ui-radius`.
 - Do not import `src/theme` or `src/utils` from this folder.

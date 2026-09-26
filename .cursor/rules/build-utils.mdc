@@ -14,3 +14,4 @@ Full map: `src/utils/README.md`.
 - `applyDefaultVariants` rewrites only `color: 'primary'` and `size: 'md'`.
 - Default palettes live in `getDefaultConfig`, not in component themes.
 - Spacing steps live in `spacing.ts`. `generateThemeCss` reads `spacingScale`. Keys are utility names; values are pixels.
+- Border radius and width steps live in `borders.ts`. `generateThemeCss` reads `borderRadiusScale` and `borderWidthScale`. Keys are utility names; values are pixels. `rounded-sm` is 8px. `border-xs` is 1px.
