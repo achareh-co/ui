@@ -87,7 +87,11 @@
     "lint": "eslint .",
     "typecheck": "vue-tsc --noEmit",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "tokens:spacing": "node scripts/update-spacing.mjs",
+    "tokens:radius": "node scripts/update-border-radius.mjs",
+    "tokens:border-width": "node scripts/update-border-width.mjs",
+    "tokens:typography": "node scripts/update-typography.mjs"
   },
   "dependencies": {
     "@nuxt/kit": "catalog:",

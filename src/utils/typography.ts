@@ -3,7 +3,7 @@
  * Each row is the role name, font-size (px), line-height (px), font-weight, and letter-spacing (px).
  * The brand family is shared. Utilities are `typo-<role>` and `typo-size-<role>` and the other single properties.
  */
-export const fontFamilyBrand = 'Vazir, Tahoma, sans-serif'
+export const fontFamilyBrand = 'KalamehFaNum, sans-serif'
 
 export const typeScale = [
   ['display-large', 57, 80, 600, 0],

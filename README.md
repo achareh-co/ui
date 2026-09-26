@@ -169,6 +169,19 @@ app.use(ui)
 
 `app.config.ui` این مقیاس را نمی‌گیرد. اورراید از متغیر `--ui-font-size-*`، `--ui-leading-*`، `--ui-font-weight-*`، `--ui-tracking-*` و `--ui-font-family-brand` است، نه از کلاس `text-*` یا `font-*`.
 
+## توکن‌های فیگما
+
+خروجی فیگما در `figma/configs` است. این دستورها مقدارها را در کد کتابخانه می‌نویسند. اورراید مصرف‌کننده در CSS اپ است و این دستورها را لازم ندارد.
+
+```bash
+pnpm tokens:spacing
+pnpm tokens:radius
+pnpm tokens:border-width
+pnpm tokens:typography
+```
+
+برای یک JSON دیگر، مسیر را بعد از `--` بده. آن اجرا فایل داخل `figma/configs` را عوض نمی‌کند.
+
 ## کامپوننت جدید
 
 1. تم را در `src/theme/<name>.ts` بنویسید و از `src/theme/index.ts` export کنید.
