@@ -11,8 +11,8 @@ function toggleColorMode() {
 
 <template>
   <UApp>
-    <main class="mx-auto flex max-w-3xl flex-col gap-8 px-6 py-10">
-      <header class="flex items-start justify-between gap-4">
+    <main class="mx-auto flex max-w-3xl flex-col gap-12 px-10 py-14">
+      <header class="flex items-start justify-between gap-8">
         <div>
           <p class="text-sm text-muted">
             Vue playground
@@ -33,7 +33,7 @@ function toggleColorMode() {
         title="Button"
         description="Same components, registered by the Vite plugin"
       >
-        <div class="flex flex-wrap items-center gap-2">
+        <div class="flex flex-wrap items-center gap-4">
           <UButton label="Primary" />
           <UButton
             label="Outline"
@@ -55,7 +55,7 @@ function toggleColorMode() {
             variant="subtle"
           />
         </div>
-        <div class="mt-4">
+        <div class="mt-8">
           <UButton
             label="Rounded"
             variant="outline"

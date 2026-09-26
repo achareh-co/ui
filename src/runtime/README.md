@@ -21,4 +21,4 @@
 - چیزی که هم Nuxt و هم Vue لازم دارند (مثل `generateColorCss`) این‌جا می‌ماند؛ هر آداپتر فقط آن را صدا می‌زند.
 - alias `#ui` در Nuxt به همین پوشه اشاره می‌کند. در پکیج، `exports` مسیر `./runtime/*` را به `dist/runtime/*` می‌دهد.
 
-`index.css` منبع توکن است: `--ui-text*`، `--ui-bg*`، `--ui-border*` برای `.light` و `.dark`. کلاس `dark` روی `documentElement` حالت تیره را روشن می‌کند. شعاع و رنگ semantic (`--ui-primary`) این‌جا سخت‌کد نمی‌شوند؛ شعاع در `:root` است و رنگ را پلاگین از `app.config.ui.colors` می‌سازد.
+`index.css` منبع توکن است: `--ui-text*`، `--ui-bg*`، `--ui-border*` برای `.light` و `.dark`. کلاس `dark` روی `documentElement` حالت تیره را روشن می‌کند. شعاع و رنگ semantic (`--ui-primary`) این‌جا سخت‌کد نمی‌شوند؛ شعاع در `:root` است و رنگ را پلاگین از `app.config.ui.colors` می‌سازد. پله‌های spacing در `#build/ui.css` به‌صورت `--ui-spacing-*` داخل `@layer theme` ساخته می‌شوند. اورراید کاربر یک `:root` بدون لایه است و به `app.config` مربوط نیست.

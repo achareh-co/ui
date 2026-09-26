@@ -9,6 +9,7 @@ Vitest روی کامپوننت‌های runtime، با تم از قبل تولی
 | `setup.ts` | matcherهای `vitest-axe`. |
 | `mocks/imports.ts` | alias `#imports`. |
 | `components/` | یک `*.spec.ts` برای هر SFC. |
+| `theme-css.spec.ts` | خروجی `generateThemeCss` برای پله‌های spacing. |
 | `../vitest.config.ts` | `#build/*` → `./.nuxt/`، `#imports` → mock، محیط `happy-dom`. |
 
 ## قرارداد

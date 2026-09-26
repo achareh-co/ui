@@ -29,7 +29,7 @@ describe('Button', () => {
     const classes = wrapper.classes()
     expect(classes).toContain('text-error')
     expect(classes).toContain('ring-error/50')
-    expect(classes).toContain('px-3')
+    expect(classes).toContain('px-6')
   })
 
   it('merges slot classes from the ui prop', () => {

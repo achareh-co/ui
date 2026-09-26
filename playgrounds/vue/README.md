@@ -9,7 +9,7 @@
 | `vite.config.ts` | `plugins: [vue(), ui({ ui: { colors } })]`. ترتیب اجباری است. |
 | `src/main.ts` | `createApp(App).use(ui)` از `@achareh/ui/vue-plugin`، بعد CSS. |
 | `src/App.vue` | نمونه داخل `UApp`. |
-| `src/assets/main.css` | `@import "tailwindcss"` سپس `@import "@achareh/ui"`. |
+| `src/assets/main.css` | `@import "tailwindcss"` سپس `@import "@achareh/ui"`. کامنت `--ui-spacing-*` نمونهٔ اورراید است. |
 | `src/env.d.ts` | ارجاع به `components.d.ts` و `auto-imports.d.ts`. |
 
 ## قرارداد

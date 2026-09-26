@@ -103,6 +103,25 @@ app.use(ui)
 
 پلاگین Vite فایل‌های `components.d.ts` و `auto-imports.d.ts` را می‌سازد. آن‌ها را gitignore کنید و به `include` تایپ‌اسکریپت اضافه کنید.
 
+## فاصله (spacing)
+
+کلید کلاس همان پلهٔ فیگما است. `p-4`، `gap-4` و `w-4` پیش‌فرض ۸px هستند. شبکهٔ ۴px تیلویند این‌جا نیست: `p-8` برابر ۱۶px است. کلیدها از `0` تا `53` به‌علاوهٔ `px` (۱px) هستند.
+
+برای عوض کردن یک یا چند پله، بعد از `@import "@achareh/ui"` در CSS اپ بنویسید. Nuxt: `app/assets/css/main.css`. Vue: `src/assets/main.css`.
+
+```css
+@import "tailwindcss";
+@import "@achareh/ui";
+
+:root {
+  --ui-spacing-4: 10px;
+}
+```
+
+`--ui-spacing-4: 10px` یعنی `p-4`، `gap-4` و `w-4` هر سه ۱۰px می‌شوند. همان متغیر روی margin، height، `size-*` و `space-*` هم اعمال می‌شود. پله‌ای که ننویسید روی پیش‌فرض می‌ماند. واحد px است.
+
+`app.config.ui` و `ui({ ui })` این مقیاس را نمی‌گیرند. `@theme { --spacing-4: ... }` هم پل را عوض نمی‌کند، چون یوتیلیتی مستقیم به `--ui-spacing-*` وصل است.
+
 ## کامپوننت جدید
 
 1. تم را در `src/theme/<name>.ts` بنویسید و از `src/theme/index.ts` export کنید.

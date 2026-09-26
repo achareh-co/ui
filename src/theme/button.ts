@@ -3,7 +3,7 @@ import type { ModuleOptions } from '../utils/defaults'
 export default (options: Required<ModuleOptions> & { theme: { colors: string[], transitions?: boolean } }) => ({
   slots: {
     base: [
-      'rounded-md font-medium inline-flex items-center justify-center gap-1.5 select-none',
+      'rounded-md font-medium inline-flex items-center justify-center gap-3 select-none',
       'disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:cursor-not-allowed aria-disabled:opacity-75',
       'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary',
       options.theme.transitions && 'transition-colors'
@@ -24,11 +24,11 @@ export default (options: Required<ModuleOptions> & { theme: { colors: string[], 
       ghost: ''
     },
     size: {
-      xs: { base: 'text-xs px-2 py-1', leading: 'size-3' },
-      sm: { base: 'text-xs px-2.5 py-1.5', leading: 'size-4' },
-      md: { base: 'text-sm px-2.5 py-1.5', leading: 'size-5' },
-      lg: { base: 'text-sm px-3 py-2', leading: 'size-5' },
-      xl: { base: 'text-base px-3.5 py-2', leading: 'size-6' }
+      xs: { base: 'text-xs px-4 py-2', leading: 'size-6' },
+      sm: { base: 'text-xs px-5 py-3', leading: 'size-8' },
+      md: { base: 'text-sm px-5 py-3', leading: 'size-9' },
+      lg: { base: 'text-sm px-6 py-4', leading: 'size-9' },
+      xl: { base: 'text-base px-7 py-4', leading: 'size-10' }
     },
     disabled: {
       true: { base: 'cursor-not-allowed opacity-75' }

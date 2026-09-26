@@ -2,6 +2,7 @@ import colors from 'tailwindcss/colors'
 import type { Nuxt, NuxtTemplate } from '@nuxt/schema'
 import { defu } from 'defu'
 import { defaultOptions, getDefaultConfig, type ModuleOptions } from './utils/defaults'
+import { generateSpacingCss } from './utils/spacing'
 import { kebabCase, resolveTheme } from './utils/theme'
 import * as themes from './theme'
 
@@ -67,8 +68,10 @@ export function generateThemeCss(options: ModuleOptions, optionsIn?: { includeSo
   --outline-color-inverted: var(--ui-border-inverted);
 }`
 
+  const spacingBlock = generateSpacingCss()
+
   if (!optionsIn?.includeSources) {
-    return `${oldNeutralBlock()}\n\n${themeBlock}\n`
+    return `${oldNeutralBlock()}\n\n${themeBlock}\n\n${spacingBlock}\n`
   }
 
   return `@source "./ui";
@@ -82,6 +85,8 @@ export function generateThemeCss(options: ModuleOptions, optionsIn?: { includeSo
 ${oldNeutralBlock()}
 
 ${themeBlock}
+
+${spacingBlock}
 `
 }
 

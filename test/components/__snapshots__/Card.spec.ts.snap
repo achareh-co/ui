@@ -2,11 +2,11 @@
 
 exports[`Card > renders title, description and body 1`] = `
 "<div data-slot="root" class="rounded-lg overflow-hidden bg-default text-default ring ring-default divide-y divide-default">
-  <div data-slot="header" class="p-4 sm:px-6 space-y-1">
+  <div data-slot="header" class="p-8 sm:px-10 space-y-2">
     <h3 data-slot="title" class="text-highlighted font-semibold text-base">Invoice</h3>
     <p data-slot="description" class="text-muted text-sm">September</p>
   </div>
-  <div data-slot="body" class="p-4 sm:p-6 text-default">Body copy</div>
+  <div data-slot="body" class="p-8 sm:p-10 text-default">Body copy</div>
   <!--v-if-->
 </div>"
 `;

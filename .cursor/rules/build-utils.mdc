@@ -13,3 +13,4 @@ Full map: `src/utils/README.md`.
 - Theme transforms run only from `resolveTheme`, in order: default variants, unstyled, prefix.
 - `applyDefaultVariants` rewrites only `color: 'primary'` and `size: 'md'`.
 - Default palettes live in `getDefaultConfig`, not in component themes.
+- Spacing steps live in `spacing.ts`. `generateThemeCss` reads `spacingScale`. Keys are utility names; values are pixels.
