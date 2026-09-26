@@ -89,6 +89,18 @@ function toggleColorMode() {
     </UCard>
 
     <UCard
+      title="Typography"
+      description="RTL-Fa role. typo-label-large sets size, line-height, weight, tracking, and family"
+    >
+      <p
+        class="typo-label-large text-default"
+        data-typography="label-large"
+      >
+        typo-label-large
+      </p>
+    </UCard>
+
+    <UCard
       title="Card slots"
       description="header, body and footer stay independently themeable"
     >

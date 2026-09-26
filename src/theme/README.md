@@ -24,6 +24,7 @@
 - کلاس معنایی: `text-default`, `text-muted`, `text-highlighted`, `bg-default`, `bg-elevated`, `bg-accented`, `bg-inverted`, `ring-default`, `divide-default`.
 - فاصله کلید فیگما است، نه شبکهٔ ۴px تیلویند. `p-8` و `gap-8` برابر ۱۶px هستند (`spacing/8`). `p-4` برابر ۸px است. پله‌های کسری (`1.5`, `2.5`) وجود ندارند.
 - شعاع و ضخامت border کلید فیگما است. `rounded-sm` برابر ۸px است (`radius/sm`). `rounded-md` برابر ۱۲px و `rounded-lg` برابر ۱۶px است. `border-xs` برابر ۱px است؛ `border-sm` برابر ۲px، `border-md` برابر ۴px، `border-lg` برابر ۸px.
+- نقش تایپوگرافی فیگما با پیشوند `typo-` است. `typo-label-large` اندازه، خط، وزن، فاصلهٔ حروف و خانواده را با هم می‌گذارد. تک‌خاصیت: `typo-size-label-large`، `typo-leading-label-large`، `typo-weight-label-large`، `typo-tracking-label-large` و `typo-family-brand`. مقیاس `text-sm` و `font-medium` تیلویند جدا می‌ماند.
 - رنگ کامپوننت: `bg-primary`, `text-error`, `ring-success/50`. نام پالت (`blue`, `violet`, `slate`) این‌جا ممنوع است؛ آن‌ها فقط `app.config.ui.colors` هستند.
 - جهت منطقی: `ms`/`me`, `ps`/`pe`, `text-start`/`text-end`, `border-s`/`border-e`, `rounded-s`/`rounded-e`. از `ml`/`mr` و `left`/`right` استفاده نکن.
 - `transition-colors` را با `options.theme.transitions` شرط کن، مثل `button.ts`.

@@ -68,6 +68,18 @@ function toggleColorMode() {
           </UButton>
         </div>
       </UCard>
+
+      <UCard
+        title="Typography"
+        description="RTL-Fa role. typo-label-large sets size, line-height, weight, tracking, and family"
+      >
+        <p
+          class="typo-label-large text-default"
+          data-typography="label-large"
+        >
+          typo-label-large
+        </p>
+      </UCard>
     </main>
   </UApp>
 </template>

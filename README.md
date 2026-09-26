@@ -139,6 +139,36 @@ app.use(ui)
 
 `--ui-radius-md: 10px` یعنی `rounded-md` ده پیکسل می‌شود. `--ui-border-width-xs` روی کلاس `border` هم اعمال می‌شود. پله‌ای که ننویسید روی پیش‌فرض فیگما می‌ماند. `app.config.ui` این مقیاس را نمی‌گیرد.
 
+## تایپوگرافی
+
+نقش‌های فیگما (حالت RTL-Fa) کلاس‌هایی با پیشوند `typo-` هستند. `typo-label-large` اندازه، ارتفاع خط، وزن، فاصلهٔ حروف و خانواده را با هم اعمال می‌کند. پیش‌فرض این نقش ۱۴px، خط ۲۰px، وزن ۵۰۰ و فاصلهٔ حروف ۰ است. خانوادهٔ مشترک `KalamehFaNum` است و اپ باید خود فونت را لود کند.
+
+هر ویژگی کلاس جدا دارد و فقط همان ویژگی را عوض می‌کند:
+
+- `typo-size-label-large` فقط اندازه
+- `typo-leading-label-large` فقط ارتفاع خط
+- `typo-weight-label-large` فقط وزن
+- `typo-tracking-label-large` فقط فاصلهٔ حروف
+- `typo-family-brand` فقط خانواده، برای همهٔ نقش‌ها
+
+`text-sm` و `font-medium` مقیاس Tailwind می‌مانند و این نقش‌ها را عوض نمی‌کنند.
+
+برای عوض کردن یک ویژگی، بعد از `@import "@achareh/ui"` در CSS اپ بنویسید. Nuxt: `app/assets/css/main.css`. Vue: `src/assets/main.css`.
+
+```css
+@import "tailwindcss";
+@import "@achareh/ui";
+
+:root {
+  --ui-font-size-label-large: 18px;
+  --ui-font-family-brand: KalamehFaNum, sans-serif;
+}
+```
+
+`--ui-font-size-label-large: 18px` یعنی هم `typo-size-label-large` و هم `typo-label-large` هجده پیکسل می‌شوند. ارتفاع خط، وزن و فاصلهٔ حروف همان نقش سر جایشان می‌مانند. ویژگی‌ای که ننویسید روی پیش‌فرض فیگما می‌ماند. واحد اندازه، خط و فاصلهٔ حروف px است.
+
+`app.config.ui` این مقیاس را نمی‌گیرد. اورراید از متغیر `--ui-font-size-*`، `--ui-leading-*`، `--ui-font-weight-*`، `--ui-tracking-*` و `--ui-font-family-brand` است، نه از کلاس `text-*` یا `font-*`.
+
 ## کامپوننت جدید
 
 1. تم را در `src/theme/<name>.ts` بنویسید و از `src/theme/index.ts` export کنید.

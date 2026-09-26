@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest'
 import { generateThemeCss } from '../src/templates'
 import { borderRadiusScale, borderWidthScale } from '../src/utils/borders'
 import { spacingScale } from '../src/utils/spacing'
+import { fontFamilyBrand, typeScale } from '../src/utils/typography'
 
 describe('generateThemeCss spacing', () => {
   const css = generateThemeCss({})
@@ -61,5 +62,46 @@ describe('generateThemeCss borders', () => {
     expect(css).toContain('--border-width-4: var(--ui-border-width-md);')
     expect(css).toContain('--border-width-8: var(--ui-border-width-lg);')
     expect(css).toContain('--default-border-width: var(--ui-border-width-xs);')
+  })
+})
+
+describe('generateThemeCss typography', () => {
+  const css = generateThemeCss({})
+
+  it('emits each RTL-Fa role inside @layer theme', () => {
+    const marker = '--ui-font-size-label-large: 14px;'
+    const layerStart = css.lastIndexOf('@layer theme {\n  :root, :host {', css.indexOf(marker))
+    const layerEnd = css.indexOf('\n}', layerStart)
+    const values = css.slice(layerStart, layerEnd)
+
+    expect(layerStart).toBeGreaterThan(-1)
+    expect(values).toContain(`--ui-font-family-brand: ${fontFamilyBrand};`)
+    expect(values).toContain('--ui-leading-label-large: 20px;')
+    expect(values).toContain('--ui-font-weight-label-large: 500;')
+    expect(values).toContain('--ui-tracking-label-large: 0px;')
+
+    for (const [role, size, leading, weight, tracking] of typeScale) {
+      expect(values).toContain(`--ui-font-size-${role}: ${size}px;`)
+      expect(values).toContain(`--ui-leading-${role}: ${leading}px;`)
+      expect(values).toContain(`--ui-font-weight-${role}: ${weight};`)
+      expect(values).toContain(`--ui-tracking-${role}: ${tracking}px;`)
+    }
+  })
+
+  it('emits a composite utility and a font-size-only utility', () => {
+    expect(css).toContain(`@utility typo-label-large {
+  font-family: var(--ui-font-family-brand);
+  font-size: var(--ui-font-size-label-large);
+  line-height: var(--ui-leading-label-large);
+  font-weight: var(--ui-font-weight-label-large);
+  letter-spacing: var(--ui-tracking-label-large);
+}`)
+    expect(css).toContain(`@utility typo-size-label-large {
+  font-size: var(--ui-font-size-label-large);
+}`)
+    expect(css).toContain(`@utility typo-family-brand {
+  font-family: var(--ui-font-family-brand);
+}`)
+    expect(css).not.toContain('--text-label-large:')
   })
 })

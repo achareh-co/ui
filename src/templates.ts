@@ -4,6 +4,7 @@ import { defu } from 'defu'
 import { defaultOptions, getDefaultConfig, type ModuleOptions } from './utils/defaults'
 import { generateBordersCss } from './utils/borders'
 import { generateSpacingCss } from './utils/spacing'
+import { generateTypographyCss } from './utils/typography'
 import { kebabCase, resolveTheme } from './utils/theme'
 import * as themes from './theme'
 
@@ -66,9 +67,10 @@ export function generateThemeCss(options: ModuleOptions, optionsIn?: { includeSo
 
   const spacingBlock = generateSpacingCss()
   const bordersBlock = generateBordersCss()
+  const typographyBlock = generateTypographyCss()
 
   if (!optionsIn?.includeSources) {
-    return `${oldNeutralBlock()}\n\n${themeBlock}\n\n${spacingBlock}\n\n${bordersBlock}\n`
+    return `${oldNeutralBlock()}\n\n${themeBlock}\n\n${spacingBlock}\n\n${bordersBlock}\n\n${typographyBlock}\n`
   }
 
   return `@source "./ui";
@@ -86,6 +88,8 @@ ${themeBlock}
 ${spacingBlock}
 
 ${bordersBlock}
+
+${typographyBlock}
 `
 }
 

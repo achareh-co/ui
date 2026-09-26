@@ -15,3 +15,4 @@ Full map: `src/utils/README.md`.
 - Default palettes live in `getDefaultConfig`, not in component themes.
 - Spacing steps live in `spacing.ts`. `generateThemeCss` reads `spacingScale`. Keys are utility names; values are pixels.
 - Border radius and width steps live in `borders.ts`. `generateThemeCss` reads `borderRadiusScale` and `borderWidthScale`. Keys are utility names; values are pixels. `rounded-sm` is 8px. `border-xs` is 1px.
+- RTL-Fa type roles live in `typography.ts`. `generateThemeCss` reads `typeScale` and `fontFamilyBrand`. Utilities start with `typo-`. `typo-label-large` sets the whole role. `typo-size-label-large` sets font-size only.
