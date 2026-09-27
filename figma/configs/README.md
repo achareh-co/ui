@@ -8,6 +8,8 @@
 | `border-radius.system.tokens.json` | `pnpm tokens:radius` |
 | `border-width.system.tokens.json` | `pnpm tokens:border-width` |
 | `RTL-Fa.system.tokens.json` | `pnpm tokens:typography` |
+| `reference.palettes.json` | `pnpm tokens:palette` |
+| `emphasis.levels.json` | `pnpm tokens:emphasis` |
 
 برای امتحان یک خروجی تازه، مسیر را آرگومان بده. آن اجرا فایل این پوشه را عوض نمی‌کند:
 

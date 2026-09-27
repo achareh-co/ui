@@ -91,7 +91,9 @@
     "tokens:spacing": "node scripts/update-spacing.mjs",
     "tokens:radius": "node scripts/update-border-radius.mjs",
     "tokens:border-width": "node scripts/update-border-width.mjs",
-    "tokens:typography": "node scripts/update-typography.mjs"
+    "tokens:typography": "node scripts/update-typography.mjs",
+    "tokens:palette": "node scripts/update-palette.mjs",
+    "tokens:emphasis": "node scripts/update-emphasis.mjs"
   },
   "dependencies": {
     "@nuxt/kit": "catalog:",

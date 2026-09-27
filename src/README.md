@@ -7,10 +7,10 @@
 | مسیر | کار |
 | --- | --- |
 | `theme/` | تعریف ظاهر. کامپوننت این فایل‌ها را مستقیم import نمی‌کند. |
-| `runtime/` | Vue، composable، CSS توکن، پلاگین رنگ. |
-| `utils/` | `defaultOptions` و `resolveTheme`. فقط موقع تولید تم. |
+| `runtime/` | Vue، composable و CSS توکن. |
+| `utils/` | `defaultOptions`، `resolveTheme` و مقیاس توکن. فقط موقع تولید تم. |
 | `shims/` | جایگزین تایپ‌چک برای `#imports` و `#build/app.config`. |
-| `module.ts` | ماژول Nuxt: alias `#ui`، پلاگین رنگ، `addComponentsDir`، `addImports`، تمپلیت‌ها، پلاگین Tailwind. |
+| `module.ts` | ماژول Nuxt: alias `#ui`، `addComponentsDir`، `addImports`، تمپلیت‌ها، پلاگین Tailwind. |
 | `unplugin.ts` | نوشتن `#build/*` در `node_modules/.nuxt-ui` و alias. `createViteIntegrations` پلاگین‌های واقعی Vite را برمی‌گرداند. |
 | `vite.ts` | `ui()` = `[AcharehUIPlugin.vite, ...createViteIntegrations].flat()`. |
 | `templates.ts` | از exportهای `theme/index.ts` فایل `ui/<kebab>.ts`، `ui.css`، `ui.static.css` و `types/ui.d.ts` می‌سازد. |

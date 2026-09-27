@@ -7,45 +7,23 @@
 @layer theme {
   :root, :host {
     --ui-container: 80rem;
-  }
 
-  :root, :host, .light {
-    --ui-text-dimmed: var(--ui-color-neutral-400);
-    --ui-text-muted: var(--ui-color-neutral-500);
-    --ui-text-toned: var(--ui-color-neutral-600);
-    --ui-text: var(--ui-color-neutral-700);
-    --ui-text-highlighted: var(--ui-color-neutral-900);
-    --ui-text-inverted: white;
+    --ui-text-dimmed: color-mix(in oklab, var(--ui-color-on-surface) var(--ui-emphasis-medium), transparent);
+    --ui-text-muted: var(--ui-color-on-surface-variant);
+    --ui-text-toned: color-mix(in oklab, var(--ui-color-on-surface) var(--ui-emphasis-high), transparent);
+    --ui-text: var(--ui-color-on-surface);
+    --ui-text-highlighted: var(--ui-color-on-background);
+    --ui-text-inverted: var(--ui-color-on-inverse-surface);
 
-    --ui-bg: white;
-    --ui-bg-muted: var(--ui-color-neutral-50);
-    --ui-bg-elevated: var(--ui-color-neutral-100);
-    --ui-bg-accented: var(--ui-color-neutral-200);
-    --ui-bg-inverted: var(--ui-color-neutral-900);
+    --ui-bg: var(--ui-color-background);
+    --ui-bg-muted: var(--ui-color-surface-container-low);
+    --ui-bg-elevated: var(--ui-color-surface-container);
+    --ui-bg-accented: var(--ui-color-surface-container-high);
+    --ui-bg-inverted: var(--ui-color-inverse-surface);
 
-    --ui-border: var(--ui-color-neutral-200);
-    --ui-border-muted: var(--ui-color-neutral-200);
-    --ui-border-accented: var(--ui-color-neutral-300);
-    --ui-border-inverted: var(--ui-color-neutral-900);
-  }
-
-  .dark {
-    --ui-text-dimmed: var(--ui-color-neutral-500);
-    --ui-text-muted: var(--ui-color-neutral-400);
-    --ui-text-toned: var(--ui-color-neutral-300);
-    --ui-text: var(--ui-color-neutral-200);
-    --ui-text-highlighted: white;
-    --ui-text-inverted: var(--ui-color-neutral-900);
-
-    --ui-bg: var(--ui-color-neutral-900);
-    --ui-bg-muted: var(--ui-color-neutral-800);
-    --ui-bg-elevated: var(--ui-color-neutral-800);
-    --ui-bg-accented: var(--ui-color-neutral-700);
-    --ui-bg-inverted: white;
-
-    --ui-border: var(--ui-color-neutral-800);
-    --ui-border-muted: var(--ui-color-neutral-700);
-    --ui-border-accented: var(--ui-color-neutral-700);
-    --ui-border-inverted: white;
+    --ui-border: var(--ui-color-outline);
+    --ui-border-muted: var(--ui-color-outline);
+    --ui-border-accented: var(--ui-color-outline-variant);
+    --ui-border-inverted: var(--ui-color-inverse-surface);
   }
 }

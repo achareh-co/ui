@@ -1,6 +1,6 @@
-import colors from 'tailwindcss/colors'
 import type { Nuxt, NuxtTemplate } from '@nuxt/schema'
 import { defu } from 'defu'
+import { generateColorsCss } from './utils/colors'
 import { defaultOptions, getDefaultConfig, type ModuleOptions } from './utils/defaults'
 import { generateBordersCss } from './utils/borders'
 import { generateSpacingCss } from './utils/spacing'
@@ -8,37 +8,11 @@ import { generateTypographyCss } from './utils/typography'
 import { kebabCase, resolveTheme } from './utils/theme'
 import * as themes from './theme'
 
-const shades = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950] as const
-
-function oldNeutralBlock() {
-  const neutral = colors.neutral
-  if (!neutral || typeof neutral !== 'object') {
-    return ''
-  }
-
-  const lines = shades
-    .filter(shade => shade in neutral)
-    .map(shade => `  --color-old-neutral-${shade}: ${neutral[shade]};`)
-
-  return `@theme static {\n${lines.join('\n')}\n}`
-}
-
 export function generateThemeCss(options: ModuleOptions, optionsIn?: { includeSources?: boolean }) {
   const theme = defu(options.theme, defaultOptions.theme)
-  const aliases = [...(theme.colors || []), 'neutral']
-  const colorVars = aliases.flatMap(color =>
-    shades.map(shade => `--color-${color}-${shade}: var(--ui-color-${color}-${shade});`)
-  )
-  const semantic = (theme.colors || []).flatMap(color => [
-    `--color-${color}: var(--ui-${color});`,
-    `--ring-color-${color}: var(--ui-${color});`,
-    `--outline-color-${color}: var(--ui-${color});`
-  ])
   const prefix = theme.prefix ? `${theme.prefix}:` : ''
 
   const themeBlock = `@theme default inline {
-  ${colorVars.join('\n  ')}
-  ${semantic.join('\n  ')}
   --text-color-dimmed: var(--ui-text-dimmed);
   --text-color-muted: var(--ui-text-muted);
   --text-color-toned: var(--ui-text-toned);
@@ -69,8 +43,10 @@ export function generateThemeCss(options: ModuleOptions, optionsIn?: { includeSo
   const bordersBlock = generateBordersCss()
   const typographyBlock = generateTypographyCss()
 
+  const colorsBlock = generateColorsCss()
+
   if (!optionsIn?.includeSources) {
-    return `${oldNeutralBlock()}\n\n${themeBlock}\n\n${spacingBlock}\n\n${bordersBlock}\n\n${typographyBlock}\n`
+    return `${colorsBlock}\n\n${themeBlock}\n\n${spacingBlock}\n\n${bordersBlock}\n\n${typographyBlock}\n`
   }
 
   return `@source "./ui";
@@ -81,7 +57,7 @@ export function generateThemeCss(options: ModuleOptions, optionsIn?: { includeSo
   }
 }
 
-${oldNeutralBlock()}
+${colorsBlock}
 
 ${themeBlock}
 
@@ -109,16 +85,6 @@ interface ComponentThemeOverride {
 }
 
 interface AppConfigUI {
-  colors?: {
-    primary?: string
-    secondary?: string
-    success?: string
-    info?: string
-    warning?: string
-    error?: string
-    neutral?: string
-    [key: string]: string | undefined
-  }
   prefix?: string
   tv?: typeof defaultConfig
   app?: ComponentThemeOverride

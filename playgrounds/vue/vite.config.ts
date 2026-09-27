@@ -5,13 +5,6 @@ import ui from '@achareh/ui/vite'
 export default defineConfig({
   plugins: [
     vue(),
-    ui({
-      ui: {
-        colors: {
-          primary: 'violet',
-          neutral: 'slate'
-        }
-      }
-    })
+    ui()
   ]
 })

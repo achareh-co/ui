@@ -89,6 +89,42 @@ function toggleColorMode() {
     </UCard>
 
     <UCard
+      title="Color"
+      description="Palette step, semantic role, and emphasis alpha"
+    >
+      <div class="flex flex-wrap items-center gap-4">
+        <span
+          class="bg-primary-50 size-12 rounded-md"
+          data-palette="primary-50"
+        />
+        <span
+          class="bg-primary-50/high size-12 rounded-md"
+          data-emphasis="primary-50/high"
+        />
+        <span
+          class="bg-default hover:bg-on-primary size-12 rounded-md"
+          data-semantic-hover="on-primary"
+        />
+        <span
+          class="bg-primary text-on-primary rounded-md px-4 py-2"
+          data-semantic="on-primary"
+        >
+          on-primary
+        </span>
+        <span
+          class="text-on-primary/high"
+          data-emphasis-text="on-primary/high"
+        >
+          text-on-primary/high
+        </span>
+        <span
+          class="bg-red-500 size-12 rounded-md"
+          data-tailwind="red-500"
+        />
+      </div>
+    </UCard>
+
+    <UCard
       title="Typography"
       description="RTL-Fa role. typo-label-large sets size, line-height, weight, tracking, and family"
     >

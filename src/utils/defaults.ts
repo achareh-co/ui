@@ -53,27 +53,6 @@ export const defaultOptions: Required<Pick<ModuleOptions, 'prefix'>> & { theme: 
   }
 }
 
-export interface AppConfigUIColors {
-  primary?: string
-  secondary?: string
-  success?: string
-  info?: string
-  warning?: string
-  error?: string
-  neutral?: string
-  [key: string]: string | undefined
-}
-
 export function getDefaultConfig() {
-  return {
-    colors: {
-      primary: 'green',
-      secondary: 'blue',
-      success: 'green',
-      info: 'blue',
-      warning: 'yellow',
-      error: 'red',
-      neutral: 'slate'
-    } satisfies AppConfigUIColors
-  }
+  return {}
 }

@@ -2,7 +2,47 @@ import { describe, expect, it } from 'vitest'
 import { generateThemeCss } from '../src/templates'
 import { borderRadiusScale, borderWidthScale } from '../src/utils/borders'
 import { spacingScale } from '../src/utils/spacing'
+import { emphasisScale, paletteScale, semanticColors } from '../src/utils/colors'
 import { fontFamilyBrand, typeScale } from '../src/utils/typography'
+
+describe('generateThemeCss colors', () => {
+  const css = generateThemeCss({})
+
+  it('replaces the Tailwind color palette and bridges Figma steps', () => {
+    expect(css).toContain('@theme default {\n  --color-*: initial;')
+    expect(css).toContain('--color-inherit: inherit;')
+    expect(css).toContain('--color-current: currentcolor;')
+    expect(css).toContain('--color-transparent: transparent;')
+    expect(css).not.toContain('old-neutral')
+    expect(css).not.toContain('--ui-palette-')
+    expect(css).not.toContain('--color-red-500:')
+    expect(css).not.toContain('--color-red-100:')
+    expect(css).not.toContain('--color-primary-500:')
+
+    const primary40 = paletteScale.find(([name, step]) => name === 'primary' && step === '40')
+    expect(primary40).toBeTruthy()
+    expect(css).toContain(`--color-primary-40: ${primary40![2]};`)
+    expect(css).toContain('--color-primary-50: #00DBBF;')
+    expect(css).toContain('--ui-color-on-primary: var(--color-primary-100);')
+    expect(css).toContain('--color-on-primary: var(--ui-color-on-primary);')
+    expect(css).toContain('--opacity-high: var(--ui-emphasis-high);')
+    expect(css).not.toContain('--color-primary-high:')
+    expect(css).not.toContain('--ui-color-primary-high:')
+    expect(css).toContain('--ui-color-surface-container-high: var(--color-neutral-92);')
+
+    for (const [name, step, hex] of paletteScale) {
+      expect(css).toContain(`--color-${name}-${step}: ${hex};`)
+    }
+    for (const [level, percent] of emphasisScale) {
+      expect(css).toContain(`--ui-emphasis-${level}: ${percent}%;`)
+      expect(css).toContain(`--opacity-${level}: var(--ui-emphasis-${level});`)
+    }
+    for (const [name, lightPalette, lightStep, darkPalette, darkStep] of semanticColors) {
+      expect(css).toContain(`--ui-color-${name}: var(--color-${lightPalette}-${lightStep});`)
+      expect(css).toContain(`--ui-color-${name}: var(--color-${darkPalette}-${darkStep});`)
+    }
+  })
+})
 
 describe('generateThemeCss spacing', () => {
   const css = generateThemeCss({})

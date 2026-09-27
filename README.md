@@ -55,17 +55,6 @@ export default defineNuxtConfig({
 </template>
 ```
 
-رنگ‌های semantic را در `app.config.ts` عوض کنید:
-
-```ts
-export default defineAppConfig({
-  ui: {
-    colors: { primary: 'blue', neutral: 'zinc' },
-    button: { defaultVariants: { size: 'sm' } }
-  }
-})
-```
-
 ## نصب در Vue + Vite
 
 ```ts
@@ -74,7 +63,7 @@ import ui from '@achareh/ui/vite'
 
 export default {
   // `ui()` must come after `vue()` so component resolvers see compiled SFCs.
-  plugins: [vue(), ui({ ui: { colors: { primary: 'violet' } } })]
+  plugins: [vue(), ui()]
 }
 ```
 
@@ -102,6 +91,44 @@ app.use(ui)
 ```
 
 پلاگین Vite فایل‌های `components.d.ts` و `auto-imports.d.ts` را می‌سازد. آن‌ها را gitignore کنید و به `include` تایپ‌اسکریپت اضافه کنید.
+
+## رنگ
+
+مبنای سیستم رنگ در این پروژه، سیستم رنگ شخصی‌سازی‌شده مطابق با خروجی فیگمای پروژهٔ شماست. پالت آمادهٔ Tailwind، مثل قرمز و آبی پیش‌فرض، این‌جا رنگی نمی‌سازد.
+
+شمارهٔ هر رنگ همان شماره‌ای است که در فیگما می‌بینید. صفر تیره‌ترین است و صد روشن‌ترین. مثلاً `primary` با شمارهٔ ۰ سیاه است (`#000000`)، با شمارهٔ ۱۰۰ سفید (`#FFFFFF`) و با شمارهٔ ۵۰ رنگ میانی (`#00DBBF`). در عادت Tailwind شمارهٔ ۵۰ روشن‌ترین است؛ این‌جا آن معنا را ندارد.
+
+رنگ را به سه شکل می‌نویسید:
+
+- رنگ کامل یک پله، با خط تیره: `bg-primary-50`. برای متن، حاشیه و حلقه هم همین است: `text-primary-50`، `border-primary-50`، `ring-primary-50`.
+- همان رنگ با پوشش کمتر، با اسلش: `bg-primary-50/high`. `high` یعنی ۸۸٪ همان رنگ دیده شود. اگر درصد را خودتان بدهید، مثل `bg-primary-50/50`، همان درصد اعمال می‌شود.
+- رنگ روی دکمه و سطح‌ها شماره ندارند: `hover:bg-on-primary` و `hover:bg-on-primary/high`. `bg-primary` بدون شماره خودِ رنگ اصلی است. در حالت روشن همان پلهٔ ۴۰ است، نه پلهٔ ۵۰.
+
+برای هماهنگ کردن رنگ‌ها با فیگمای پروژه‌تان، بعد از `@import "@achareh/ui"` در فایل CSS بنویسید. در Nuxt این فایل `app/assets/css/main.css` است و در Vue `src/assets/main.css`.
+
+```css
+@import "tailwindcss";
+@import "@achareh/ui";
+
+@theme {
+  --color-primary-40: #0055ff;
+  --color-primary-80: #99bbff;
+  --color-primary-100: #ffffff;
+  --color-primary-20: #003322;
+}
+```
+
+دکمه و کلاس‌هایی که در صفحه می‌نویسید هر دو همین رنگ‌ها را می‌گیرند. در حالت روشن پس‌زمینهٔ دکمه پلهٔ ۴۰ است و نوشتهٔ روی آن پلهٔ ۱۰۰. در حالت تیره پس‌زمینه پلهٔ ۸۰ است و نوشته پلهٔ ۲۰. اگر این چهار خط را ننویسید، پس‌زمینهٔ روشن `#00BFA5` می‌ماند. پله‌ای را که این‌جا عوض کنید، رنگ قبلی‌اش در فایل نهایی CSS کنار گذاشته می‌شود.
+
+`secondary`، `tertiary`، `error`، `success`، `warning` و `info` هم با همین شماره‌ها کار می‌کنند: ۴۰ و ۱۰۰ در روشن، ۸۰ و ۲۰ در تیره. پس‌زمینهٔ صفحه از `neutral` می‌آید، ۹۸ در روشن و ۶ در تیره. هر شماره‌ای را که ننویسید، همان رنگی می‌ماند که از فیگما آمده.
+
+این رنگ‌ها از `app.config` عوض نمی‌شوند. اگر بخواهید پوشش `high` به‌جای ۸۸٪ مقدار دیگری باشد:
+
+```css
+:root {
+  --ui-emphasis-high: 80%;
+}
+```
 
 ## فاصله (spacing)
 
@@ -178,6 +205,8 @@ pnpm tokens:spacing
 pnpm tokens:radius
 pnpm tokens:border-width
 pnpm tokens:typography
+pnpm tokens:palette
+pnpm tokens:emphasis
 ```
 
 برای یک JSON دیگر، مسیر را بعد از `--` بده. آن اجرا فایل داخل `figma/configs` را عوض نمی‌کند.

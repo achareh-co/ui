@@ -8,8 +8,7 @@ alwaysApply: false
 
 Maps: `src/runtime/vue/README.md`, `src/runtime/vue/stubs/README.md`, `src/runtime/plugins/README.md`, `src/shims/README.md`.
 
-- `plugin.ts` `install` applies `ui` overrides, then runs `plugins/colors`. Vite `ui({ ui })` does not replace `app.use`.
-- `plugins/colors.ts` only calls `generateColorCss` and `useHead`. Nuxt registers it in `module.ts`; Vue runs it from `install`.
+- `plugin.ts` `install` applies `ui` overrides. Vite `ui({ ui })` does not replace `app.use`. Color variables come from the generated stylesheet, not from this install.
 - Keep `useAppConfig`, `useHead`, and `defineNuxtPlugin` signatures aligned across:
   - `src/shims/imports.ts` (typecheck, no behavior)
   - `src/runtime/vue/stubs/imports.ts` (Vite runtime)

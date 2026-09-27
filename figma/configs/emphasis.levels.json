@@ -1,0 +1,88 @@
+{
+  "sana": {
+    "sys": {
+      "emphasis level": {
+        "high": {
+          "$type": "number",
+          "$value": 88,
+          "$extensions": {
+            "com.figma.variableId": "VariableID:2234:3453",
+            "com.figma.scopes": [
+              "OPACITY",
+              "COLOR_OPACITY"
+            ]
+          }
+        },
+        "strong": {
+          "$type": "number",
+          "$value": 72,
+          "$extensions": {
+            "com.figma.variableId": "VariableID:2234:3454",
+            "com.figma.scopes": [
+              "OPACITY",
+              "COLOR_OPACITY"
+            ]
+          }
+        },
+        "medium": {
+          "$type": "number",
+          "$value": 60,
+          "$extensions": {
+            "com.figma.variableId": "VariableID:2234:3455",
+            "com.figma.scopes": [
+              "OPACITY",
+              "COLOR_OPACITY"
+            ]
+          }
+        },
+        "regular": {
+          "$type": "number",
+          "$value": 48,
+          "$extensions": {
+            "com.figma.variableId": "VariableID:2234:3456",
+            "com.figma.scopes": [
+              "OPACITY",
+              "COLOR_OPACITY"
+            ]
+          }
+        },
+        "light": {
+          "$type": "number",
+          "$value": 24,
+          "$extensions": {
+            "com.figma.variableId": "VariableID:2234:3457",
+            "com.figma.scopes": [
+              "OPACITY",
+              "COLOR_OPACITY"
+            ]
+          }
+        },
+        "low": {
+          "$type": "number",
+          "$value": 12,
+          "$extensions": {
+            "com.figma.variableId": "VariableID:4001:2",
+            "com.figma.scopes": [
+              "OPACITY",
+              "COLOR_OPACITY"
+            ]
+          }
+        },
+        "weak": {
+          "$type": "number",
+          "$value": 8,
+          "$extensions": {
+            "com.figma.variableId": "VariableID:2234:3458",
+            "com.figma.scopes": [
+              "OPACITY",
+              "COLOR_OPACITY"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "$extensions": {
+    "com.figma.modeName": "Mode 1"
+  }
+}

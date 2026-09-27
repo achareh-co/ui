@@ -2,14 +2,9 @@
 
 پلاگین‌های Nuxt که باید سمت سرور/کلاینت Nuxt ثبت شوند. منطق قابل اشتراک این‌جا کپی نمی‌شود.
 
-## فایل‌ها
-
-| فایل | کار |
-| --- | --- |
-| `colors.ts` | `useHead` با استایل `achareh-ui-colors` از `generateColorCss(appConfig.ui.colors, prefix)`. |
+الان پلاگینی این‌جا نیست. رنگ در زمان بیلد از `src/utils/colors.ts` داخل `#build/ui.css` ساخته می‌شود و از `app.config` نمی‌آید.
 
 ## نقشه
 
-- محاسبهٔ CSS در `runtime/utils/colors.ts` می‌ماند. این پوشه فقط آن را به `useHead` می‌دهد.
-- ثبت فقط در `module.ts` با `addPlugin`. آداپتر Vue همین فایل را از `runtime/vue/plugin.ts` صدا می‌زند و `useHead` جعل‌شده در stub یک `<style>` می‌سازد.
-- پلاگین جدید اگر به Nuxt (`useHead`, هوک) نیاز دارد این‌جا می‌آید و باید معادلش در `runtime/vue` هم وصل شود. اگر فقط تابع خالص است، جایش `runtime/utils` است.
+- پلاگین جدید اگر به Nuxt (`useHead`, هوک) نیاز دارد این‌جا می‌آید و باید معادلش در `runtime/vue` هم وصل شود. اگر فقط تابع خالص است، جایش `runtime/utils` یا، برای دادهٔ تم، `src/utils` است.
+- ثبت فقط در `module.ts` با `addPlugin`. آداپتر Vue همان فایل را از `runtime/vue/plugin.ts` صدا می‌زند.

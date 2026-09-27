@@ -12,7 +12,7 @@ Full map: `src/utils/README.md`.
 - New module or theme options go on `ModuleOptions` / `ThemeOptions` and `defaultOptions`.
 - Theme transforms run only from `resolveTheme`, in order: default variants, unstyled, prefix.
 - `applyDefaultVariants` rewrites only `color: 'primary'` and `size: 'md'`.
-- Default palettes live in `getDefaultConfig`, not in component themes.
+- Color steps live in `colors.ts`. `generateThemeCss` reads `paletteScale`, `semanticColors`, and `emphasisScale`. Each step is one `@theme default` key (`--color-primary-50: #00DBBF`). `0` is darkest and `100` is lightest. `bg-primary-50/high` is that step at emphasis alpha. `hover:bg-on-primary` reads `var(--color-primary-100)` in light. An app `@theme` block replaces the same key. `--color-*: initial` removes the Tailwind palette.
 - Spacing steps live in `spacing.ts`. `generateThemeCss` reads `spacingScale`. Keys are utility names; values are pixels.
 - Border radius and width steps live in `borders.ts`. `generateThemeCss` reads `borderRadiusScale` and `borderWidthScale`. Keys are utility names; values are pixels. `rounded-sm` is 8px. `border-xs` is 1px.
 - RTL-Fa type roles live in `typography.ts`. `generateThemeCss` reads `typeScale` and `fontFamilyBrand`. Utilities start with `typo-`. `typo-label-large` sets the whole role. `typo-size-label-large` sets font-size only.

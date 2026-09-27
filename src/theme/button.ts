@@ -38,7 +38,7 @@ export default (options: Required<ModuleOptions> & { theme: { colors: string[], 
     ...(options.theme.colors || []).map((color: string) => ({
       color,
       variant: 'solid',
-      class: `bg-${color} text-inverted hover:bg-${color}/90 active:bg-${color}/90`
+      class: `bg-${color} text-on-${color} hover:bg-${color}/90 active:bg-${color}/90`
     })),
     ...(options.theme.colors || []).map((color: string) => ({
       color,

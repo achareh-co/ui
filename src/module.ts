@@ -1,5 +1,5 @@
 import { defu } from 'defu'
-import { addComponentsDir, addImports, addPlugin, addTemplate, addTypeTemplate, createResolver, defineNuxtModule } from '@nuxt/kit'
+import { addComponentsDir, addImports, addTemplate, addTypeTemplate, createResolver, defineNuxtModule } from '@nuxt/kit'
 import type { Nuxt } from '@nuxt/schema'
 import { getTemplates } from './templates'
 import { defaultOptions, getDefaultConfig, type ModuleOptions } from './utils/defaults'
@@ -45,10 +45,6 @@ export default defineNuxtModule<ModuleOptions>({
       const plugin = (await import('@tailwindcss/vite')).default
       config.plugins ||= []
       config.plugins.push(plugin())
-    })
-
-    addPlugin({
-      src: resolver.resolve('./runtime/plugins/colors')
     })
 
     addComponentsDir({

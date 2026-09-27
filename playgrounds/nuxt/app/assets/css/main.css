@@ -1,4 +1,11 @@
 @import "tailwindcss";
 @import "@achareh/ui";
 
-/* :root { --ui-spacing-4: 10px; --ui-radius-md: 10px; --ui-border-width-sm: 2px; --ui-font-size-label-large: 18px; } */
+@theme {
+  --color-primary-40: #0055ff;
+  --color-primary-80: #99bbff;
+  --color-primary-100: #ffffff;
+  --color-primary-20: #003322;
+}
+
+/* :root { --ui-spacing-4: 10px; --ui-radius-md: 10px; --ui-border-width-sm: 2px; --ui-font-size-label-large: 18px; --ui-emphasis-high: 80%; } */

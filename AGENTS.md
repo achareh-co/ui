@@ -71,9 +71,9 @@ pnpm build
 | [`src/runtime`](src/runtime/README.md) | چه چیزی runtime است |
 | [`src/runtime/components`](src/runtime/components/README.md) | الگوی Vue |
 | [`src/runtime/composables`](src/runtime/composables/README.md) | `useComponentProps` |
-| [`src/runtime/utils`](src/runtime/utils/README.md) | `tv` و رنگ runtime |
+| [`src/runtime/utils`](src/runtime/utils/README.md) | `tv` |
 | [`src/runtime/types`](src/runtime/types/README.md) | تایپ عمومی تم و re-export |
-| [`src/runtime/plugins`](src/runtime/plugins/README.md) | تزریق CSS رنگ در Nuxt |
+| [`src/runtime/plugins`](src/runtime/plugins/README.md) | پلاگین Nuxt؛ رنگ این‌جا تزریق نمی‌شود |
 | [`src/runtime/vue`](src/runtime/vue/README.md) | پلاگین Vue |
 | [`src/runtime/vue/stubs`](src/runtime/vue/stubs/README.md) | جعل `#imports` برای Vue |
 | [`src/shims`](src/shims/README.md) | جعل تایپ‌چک، بدون رفتار |
