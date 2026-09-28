@@ -7,8 +7,8 @@
 | فایل | الگو |
 | --- | --- |
 | `index.ts` | فقط re-export. کلید export = نام در `useComponentProps` و `app.config.ui`. |
-| `button.ts` | تم تابعی: به `options.theme.colors` و `transitions` وابسته است. |
-| `card.ts`, `app.ts` | آبجکت ثابت: فقط `slots`. |
+| `button.ts`, `input.ts` | تم تابعی: `button` به `options.theme.colors` و `transitions` وابسته است. `input` فقط `transitions` را می‌خواند. |
+| `app.ts` | آبجکت ثابت: فقط `slots`. |
 
 ## نقشهٔ تم جدید
 
@@ -27,7 +27,7 @@
 - نقش تایپوگرافی فیگما با پیشوند `typo-` است. `typo-label-large` اندازه، خط، وزن، فاصلهٔ حروف و خانواده را با هم می‌گذارد. تک‌خاصیت: `typo-size-label-large`، `typo-leading-label-large`، `typo-weight-label-large`، `typo-tracking-label-large` و `typo-family-brand`. مقیاس `text-sm` و `font-medium` تیلویند جدا می‌ماند.
 - رنگ کامپوننت: پله با خط تیره است (`bg-primary-50`). در فیگما `0` تیره‌ترین است و `100` روشن‌ترین؛ `primary-50` وسط رمپ است، نه tint روشن Tailwind. شفافیت همان پله با اسلش است (`bg-primary-50/high` = ۸۸٪). نقش semantic پله ندارد و کلاس معتبر است (`hover:bg-on-primary`). `bg-primary` بدون شماره نقش جامد است و با `bg-primary-50` یکی نیست. نام پالت Tailwind (`red-100`, `blue`, `slate`) این‌جا ممنوع است.
 - جهت منطقی: `ms`/`me`, `ps`/`pe`, `text-start`/`text-end`, `border-s`/`border-e`, `rounded-s`/`rounded-e`. از `ml`/`mr` و `left`/`right` استفاده نکن.
-- `transition-colors` را با `options.theme.transitions` شرط کن، مثل `button.ts`.
+- کلاس transition را با `options.theme.transitions` شرط کن، مثل `button.ts`.
 - تابع تم `options` می‌گیرد و آبجکت برمی‌گرداند. `resolveTheme` در `src/utils/theme.ts` بعداً پیش‌فرض variant، حالت `unstyled` و prefix را اعمال می‌کند؛ آن منطق را این‌جا تکرار نکن.
 
 ```ts
@@ -35,5 +35,5 @@
 `bg-${color}`
 
 // این رشته بعد از generate در #build/ui می‌نشیند و دیده می‌شود
-class: `bg-${color} text-on-${color} hover:bg-${color}/90`
+class: `bg-${color} text-on-${color} hover:not-disabled:bg-${color}/high`
 ```

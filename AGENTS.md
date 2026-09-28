@@ -2,7 +2,7 @@
 
 راهنمای کار روی `@achareh/ui`. مخاطب هم انسان است هم ایجنت. جزئیات هر پوشه در `README.md` همان پوشه است؛ این فایل فقط نقشهٔ کل و ترتیب کار است.
 
-الگو از [Nuxt UI `AGENTS.md`](https://github.com/nuxt/ui/blob/v4/AGENTS.md) است، با این تفاوت که فرم، `UTheme`، i18n، آیکون، docs و CLI عمداً این‌جا نیستند.
+الگو از [Nuxt UI `AGENTS.md`](https://github.com/nuxt/ui/blob/v4/AGENTS.md) است، با این تفاوت که فرم، `UTheme`، i18n، آیکون، سایت docs و CLI عمداً این‌جا نیستند. استوری‌بوک در [`.storybook`](.storybook/README.md) است.
 
 ## قبل از دست زدن به کد
 
@@ -44,6 +44,7 @@ src/templates.ts    src/theme را به فایل‌های اسکن‌شدنی Ta
 - [ ] re-export تایپ‌ها در `src/runtime/types/index.ts`
 - [ ] فیلد `AppConfigUI` در `src/templates.ts` (`appConfigTypes`)
 - [ ] `test/components/<Pascal>.spec.ts`
+- [ ] `src/runtime/components/<Pascal>.stories.ts`
 - [ ] یک مثال در `playgrounds/nuxt` و `playgrounds/vue`
 - [ ] `pnpm test` و `pnpm typecheck`
 
@@ -59,6 +60,7 @@ pnpm lint
 pnpm typecheck
 pnpm test
 pnpm build
+pnpm storybook      # http://localhost:6006
 ```
 
 ## نقشهٔ پوشه‌ها
@@ -77,6 +79,7 @@ pnpm build
 | [`src/runtime/vue`](src/runtime/vue/README.md) | پلاگین Vue |
 | [`src/runtime/vue/stubs`](src/runtime/vue/stubs/README.md) | جعل `#imports` برای Vue |
 | [`src/shims`](src/shims/README.md) | جعل تایپ‌چک، بدون رفتار |
+| [`.storybook`](.storybook/README.md) | استوری‌بوک Vue + `ui()` |
 | [`playgrounds`](playgrounds/README.md) | تفاوت دو مصرف‌کننده |
 | [`playgrounds/nuxt`](playgrounds/nuxt/README.md) | ماژول |
 | [`playgrounds/vue`](playgrounds/vue/README.md) | `ui()` بعد از `vue()` |

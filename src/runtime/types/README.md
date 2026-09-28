@@ -7,7 +7,7 @@
 | فایل | کار |
 | --- | --- |
 | `tv.ts` | `ThemeConfig`, `ComponentConfig<typeof theme>`, `SlotClasses`. |
-| `index.ts` | `export type` از اینترفیس‌های داخل SFC (`ButtonProps`, `CardSlots`, …). |
+| `index.ts` | `export type` از اینترفیس‌های داخل SFC (`ButtonProps`, `InputSlots`, …). |
 
 ## نقشه
 

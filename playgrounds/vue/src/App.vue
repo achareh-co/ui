@@ -2,6 +2,9 @@
 import { ref } from 'vue'
 
 const dark = ref(false)
+const name = ref('متن قابل پاک کردن')
+const amount = ref('')
+const phone = ref('')
 
 function toggleColorMode() {
   dark.value = !dark.value
@@ -29,50 +32,144 @@ function toggleColorMode() {
         />
       </header>
 
-      <UCard
-        title="Button"
-        description="Same components, registered by the Vite plugin"
-      >
+      <section class="flex flex-col gap-6">
+        <div>
+          <h2 class="text-highlighted text-lg font-semibold">
+            Button
+          </h2>
+          <p class="text-muted text-sm">
+            variant, weight, radius, loading and icons
+          </p>
+        </div>
         <div class="flex flex-wrap items-center gap-4">
-          <UButton label="Primary" />
+          <UButton label="Solid" />
+          <UButton
+            label="Soft"
+            variant="soft"
+          />
           <UButton
             label="Outline"
             variant="outline"
           />
           <UButton
-            label="Soft"
-            color="success"
-            variant="soft"
-          />
-          <UButton
             label="Ghost"
-            color="neutral"
             variant="ghost"
           />
           <UButton
             label="Error"
             color="error"
-            variant="subtle"
+            variant="outline"
           />
         </div>
-        <div class="mt-8">
+        <div class="flex flex-wrap items-center gap-4">
           <UButton
-            label="Rounded"
-            variant="outline"
-            color="neutral"
-            :ui="{ base: 'rounded-full' }"
-          >
+            label="Bold"
+            weight="bold"
+          />
+          <UButton
+            label="Light"
+            weight="light"
+          />
+          <UButton
+            label="Full"
+            radius="full"
+          />
+          <UButton
+            label="Loading"
+            loading
+          />
+        </div>
+        <div class="flex flex-wrap items-center gap-4">
+          <UButton label="Share">
             <template #leading>
-              <span aria-hidden="true">+</span>
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                aria-hidden="true"
+              >
+                <path d="M12 5v10M8 9l4-4 4 4M6 19h12" />
+              </svg>
+            </template>
+          </UButton>
+          <UButton label="Confirm">
+            <template #trailing>
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                aria-hidden="true"
+              >
+                <path d="M5 12l5 5L20 7" />
+              </svg>
             </template>
           </UButton>
         </div>
-      </UCard>
+        <UButton
+          label="Block"
+          block
+        />
+      </section>
 
-      <UCard
-        title="Color"
-        description="Palette step, semantic role, and emphasis alpha"
-      >
+      <section class="flex max-w-sm flex-col gap-6">
+        <div>
+          <h2 class="text-highlighted text-lg font-semibold">
+            Input
+          </h2>
+          <p class="text-muted text-sm">
+            state, clear, numeric and direction
+          </p>
+        </div>
+        <UInput
+          v-model="name"
+          placeholder="نام"
+          clearable
+        />
+        <UInput
+          v-model="amount"
+          placeholder="فقط عدد"
+          numeric
+          state="error"
+        />
+        <UInput
+          v-model="phone"
+          placeholder="شماره موبایل"
+          numeric
+          clearable
+          direction="ltr"
+          empty-direction="rtl"
+          state="success"
+        >
+          <template
+            v-if="phone"
+            #trailing
+          >
+            +98
+          </template>
+        </UInput>
+        <UInput
+          model-value="غیرفعال"
+          placeholder="غیرفعال"
+          disabled
+        />
+        <UInput
+          placeholder="هشدار"
+          state="warning"
+          weight="light"
+        />
+      </section>
+
+      <section class="flex flex-col gap-6">
+        <div>
+          <h2 class="text-highlighted text-lg font-semibold">
+            Color
+          </h2>
+          <p class="text-muted text-sm">
+            Palette step, semantic role, and emphasis alpha
+          </p>
+        </div>
         <div class="flex flex-wrap items-center gap-4">
           <span
             class="bg-primary-50 size-12 rounded-md"
@@ -103,19 +200,19 @@ function toggleColorMode() {
             data-tailwind="red-500"
           />
         </div>
-      </UCard>
+      </section>
 
-      <UCard
-        title="Typography"
-        description="RTL-Fa role. typo-label-large sets size, line-height, weight, tracking, and family"
-      >
+      <section class="flex flex-col gap-4">
+        <h2 class="text-highlighted text-lg font-semibold">
+          Typography
+        </h2>
         <p
           class="typo-label-large text-default"
           data-typography="label-large"
         >
           typo-label-large
         </p>
-      </UCard>
+      </section>
     </main>
   </UApp>
 </template>

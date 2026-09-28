@@ -9,7 +9,7 @@
 | `nuxt.config.ts` | `modules: ['@achareh/ui']` و CSS اپ. |
 | `app/app.config.ts` | در صورت نیاز `defaultVariants`. |
 | `app/app.vue` | پوستهٔ Nuxt. |
-| `app/pages/index.vue` | نمونهٔ `UButton` / `UCard` و کلاس `dark` روی `documentElement`. |
+| `app/pages/index.vue` | نمونهٔ `UButton` / `UInput` و کلاس `dark` روی `documentElement`. |
 | `app/assets/css/main.css` | `@import "tailwindcss"` سپس `@import "@achareh/ui"`. بلوک `@theme` پله‌های `primary` را با `#0055ff`، `#99bbff`، `#ffffff` و `#003322` عوض می‌کند. کامنت `--ui-spacing-*`، `--ui-radius-*`، `--ui-border-width-*`، `--ui-font-size-*` و `--ui-emphasis-*` نمونهٔ اورراید بقیه است. |
 
 ## قرارداد

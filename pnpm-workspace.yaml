@@ -15,6 +15,9 @@ overrides:
 catalog:
   "@nuxt/kit": ^4.5.2
   "@nuxt/module-builder": ^1.0.3
+  "@storybook/addon-docs": ^10.6.0
+  "@storybook/addon-themes": ^10.6.0
+  "@storybook/vue3-vite": ^10.6.0
   "@nuxt/schema": ^4.5.2
   "@tailwindcss/vite": ^4.3.3
   "@types/node": ^24.5.2
@@ -25,6 +28,8 @@ catalog:
   eslint-plugin-vue: ^10.5.0
   happy-dom: ^20.0.0
   nuxt: ^4.5.2
+  storybook: ^10.6.0
+  storybook-addon-pseudo-states: ^10.6.0
   reka-ui: ^2.5.0
   tailwind-merge: ^3.3.1
   tailwindcss: ^4.3.3

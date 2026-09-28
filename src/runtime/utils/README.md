@@ -6,7 +6,8 @@
 
 | فایل | کار |
 | --- | --- |
-| `tv.ts` | `createTV({ twMerge: true })`. wrapper کلید slot را بعد از spread شدن `app.config` حفظ می‌کند، چون `tailwind-variants` آن‌ها را پاک می‌کند. |
+| `tv.ts` | `createTV({ twMerge: true })`. wrapper کلید slot را بعد از spread شدن `app.config` حفظ می‌کند، چون `tailwind-variants` آن‌ها را پاک می‌کند. پهنای `border-xs` تا `border-lg` را به tailwind-merge می‌شناساند تا با رنگ border قاطی نشود. |
+| `digits.ts` | `toEnglishDigits`: رقم فارسی و عربی را انگلیسی می‌کند. |
 
 ## قرارداد
 

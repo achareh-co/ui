@@ -1,0 +1,15 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Input > renders an empty field 1`] = `
+"<div data-slot="root" class="flex min-w-0 items-center gap-4 border-xs border-solid border-outline-variant bg-surface-container-lowest text-on-surface typo-family-brand cursor-text transition-[background-color,border-color,box-shadow] duration-200 ease-[ease] rounded-xs px-6 py-8 focus-within:shadow-[0_0_0_3px_var(--color-primary),0_0_0_4px_var(--color-surface)] hover:not-focus-within:border-on-surface hover:not-focus-within:bg-surface-container-lowest-hover focus-within:bg-surface-container-lowest-focused">
+  <!--v-if-->
+  <div data-slot="field" dir="rtl" class="flex min-w-0 flex-1 items-center gap-4">
+    <div data-slot="content" class="flex min-w-0 flex-1 flex-wrap items-center gap-2 text-start">
+      <!--v-if--><input id="reka-v-0" data-slot="base" type="text" placeholder="نام" class="min-w-0 flex-1 border-0 bg-transparent p-0 text-inherit outline-none placeholder:text-on-surface/regular read-only:cursor-default typo-body-large caret-primary">
+    </div>
+    <!--v-if-->
+    <!--v-if-->
+  </div>
+  <!--v-if-->
+</div>"
+`;

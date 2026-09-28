@@ -16,11 +16,32 @@ export interface ButtonProps {
    */
   variant?: keyof ButtonTheme['variants']['variant']
   /**
-   * @defaultValue 'md'
+   * @defaultValue 'bold'
    */
-  size?: keyof ButtonTheme['variants']['size']
+  weight?: keyof ButtonTheme['variants']['weight']
+  /**
+   * @defaultValue 'compact'
+   */
+  paddingX?: keyof ButtonTheme['variants']['paddingX']
+  /**
+   * @defaultValue 'compact'
+   */
+  paddingY?: keyof ButtonTheme['variants']['paddingY']
+  /**
+   * @defaultValue 'xs'
+   */
+  radius?: keyof ButtonTheme['variants']['radius']
+  block?: boolean
+  loading?: boolean
   disabled?: boolean
+  /**
+   * @defaultValue 'button'
+   */
   type?: 'button' | 'submit' | 'reset'
+  /**
+   * Renders an anchor when set and `as` is empty.
+   */
+  to?: string
   /**
    * The element or component to render as.
    * @defaultValue 'button'
@@ -33,6 +54,7 @@ export interface ButtonProps {
 export interface ButtonSlots {
   default?(props?: Record<string, never>): VNode[]
   leading?(props?: Record<string, never>): VNode[]
+  trailing?(props?: Record<string, never>): VNode[]
 }
 </script>
 
@@ -53,24 +75,49 @@ const slots = defineSlots<ButtonSlots>()
 const props = useComponentProps('button', _props)
 const appConfig = useAppConfig()
 
+const hasLabel = computed(() => Boolean(props.label) || Boolean(slots.default))
+const icon = computed(() => {
+  if (!hasLabel.value) {
+    return 'none'
+  }
+  if (slots.leading) {
+    return 'leading'
+  }
+  if (slots.trailing && !props.loading) {
+    return 'trailing'
+  }
+  return 'none'
+})
+const loadingLabel = computed(() => Boolean(props.loading) && hasLabel.value)
+const rootAs = computed(() => props.as || (props.to ? 'a' : 'button'))
+const isDisabled = computed(() => Boolean(props.disabled || props.loading))
+
 const ui = computed(() => tv({
   extend: theme,
   ...(appConfig.ui?.button || {})
 })({
   color: props.color,
   variant: props.variant,
-  size: props.size,
-  disabled: props.disabled
+  weight: props.weight,
+  paddingX: props.paddingX,
+  paddingY: props.paddingY,
+  radius: props.radius,
+  block: props.block,
+  loading: props.loading,
+  loadingLabel: loadingLabel.value,
+  icon: icon.value
 }))
 </script>
 
 <template>
   <Primitive
-    :as="props.as || 'button'"
-    :type="props.as ? undefined : props.type"
-    :disabled="props.disabled"
     data-slot="base"
     v-bind="$attrs"
+    :as="rootAs"
+    :type="rootAs === 'button' ? props.type : undefined"
+    :href="!props.as && props.to ? props.to : undefined"
+    :to="props.as && props.to ? props.to : undefined"
+    :disabled="isDisabled"
     :class="ui.base({ class: [props.ui?.base, props.class] })"
   >
     <span
@@ -81,10 +128,38 @@ const ui = computed(() => tv({
       <slot name="leading" />
     </span>
     <span
+      v-if="hasLabel"
       data-slot="label"
       :class="ui.label({ class: props.ui?.label })"
     >
       <slot>{{ props.label }}</slot>
+    </span>
+    <svg
+      v-if="props.loading"
+      data-slot="spinner"
+      viewBox="25 25 50 50"
+      aria-hidden="true"
+      :class="ui.spinner({ class: props.ui?.spinner })"
+    >
+      <circle
+        data-slot="spinnerPath"
+        cx="50"
+        cy="50"
+        r="20"
+        fill="none"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-miterlimit="10"
+        stroke-width="5"
+        :class="ui.spinnerPath({ class: props.ui?.spinnerPath })"
+      />
+    </svg>
+    <span
+      v-else-if="!!slots.trailing"
+      data-slot="trailing"
+      :class="ui.trailing({ class: props.ui?.trailing })"
+    >
+      <slot name="trailing" />
     </span>
   </Primitive>
 </template>

@@ -1,7 +1,18 @@
 import { createTV } from 'tailwind-variants'
 
 const create = createTV({
-  twMerge: true
+  twMerge: true,
+  twMergeConfig: {
+    extend: {
+      classGroups: {
+        'border-w': [{ border: ['xs', 'sm', 'md', 'lg'] }],
+        'border-w-x': [{ 'border-x': ['xs', 'sm', 'md', 'lg'] }],
+        'border-w-y': [{ 'border-y': ['xs', 'sm', 'md', 'lg'] }],
+        'border-w-s': [{ 'border-s': ['xs', 'sm', 'md', 'lg'] }],
+        'border-w-e': [{ 'border-e': ['xs', 'sm', 'md', 'lg'] }]
+      }
+    }
+  }
 })
 
 type SlotFn = (slotProps?: { class?: any, className?: any }) => string

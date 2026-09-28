@@ -89,7 +89,7 @@ interface AppConfigUI {
   tv?: typeof defaultConfig
   app?: ComponentThemeOverride
   button?: ComponentThemeOverride
-  card?: ComponentThemeOverride
+  input?: ComponentThemeOverride
 }
 
 declare module '@nuxt/schema' {

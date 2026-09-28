@@ -27,3 +27,35 @@
     --ui-border-inverted: var(--ui-color-inverse-surface);
   }
 }
+
+@keyframes ui-spinner-rotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes ui-spinner-dash {
+  0% {
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+  }
+
+  50% {
+    stroke-dasharray: 89, 200;
+    stroke-dashoffset: -35;
+  }
+
+  100% {
+    stroke-dasharray: 89, 200;
+    stroke-dashoffset: -124;
+  }
+}
+
+@utility animate-spinner-rotate {
+  transform-origin: center;
+  animation: ui-spinner-rotate 1.5s linear infinite;
+}
+
+@utility animate-spinner-dash {
+  animation: ui-spinner-dash 0.75s ease-in-out infinite;
+}

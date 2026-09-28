@@ -1,7 +1,8 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`Button > renders a primary button 1`] = `
-"<button type="button" data-slot="base" class="rounded-md font-medium inline-flex items-center justify-center gap-3 select-none disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:cursor-not-allowed aria-disabled:opacity-75 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary transition-colors text-sm px-5 py-3 bg-primary text-on-primary hover:bg-primary/90 active:bg-primary/90">
-  <!--v-if--><span data-slot="label" class="truncate">Save</span>
+"<button data-slot="base" type="button" class="relative inline-flex flex-nowrap items-center justify-center gap-0 align-middle text-center whitespace-nowrap no-underline appearance-none cursor-pointer select-none border-0 border-transparent disabled:cursor-not-allowed focus-visible:not-disabled:border-transparent focus-visible:not-disabled:shadow-[0_0_0_3px_var(--color-primary),0_0_0_1px_var(--color-surface)] transition-[background-color,color,border-color,box-shadow] duration-200 ease-[ease] typo-title-medium py-4 rounded-xs bg-primary text-on-primary hover:not-disabled:bg-primary/high active:not-disabled:bg-primary/strong focus-visible:not-disabled:bg-primary/strong disabled:bg-surface-container-low disabled:text-on-surface-variant px-4 min-h-14">
+  <!--v-if--><span data-slot="label" class="inline-flex min-w-0 items-center justify-center">Save</span>
+  <!--v-if-->
 </button>"
 `;

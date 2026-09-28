@@ -10,7 +10,9 @@ export default tseslint.config(
       '**/node_modules/**',
       '**/components.d.ts',
       '**/auto-imports.d.ts',
-      '**/coverage/**'
+      '**/coverage/**',
+      '**/.storybook/dist/**',
+      '**/storybook-static/**'
     ]
   },
   ...tseslint.configs.recommended,

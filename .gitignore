@@ -13,3 +13,6 @@ playgrounds/*/.output
 playgrounds/*/node_modules/.nuxt-ui
 .nuxt-ui
 *.tsbuildinfo
+.storybook/dist
+storybook-static
+debug-storybook.log

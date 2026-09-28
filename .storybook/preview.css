@@ -1,0 +1,8 @@
+@import "tailwindcss";
+@import "../src/runtime/index.css";
+
+html,
+body {
+  direction: rtl;
+  text-align: right;
+}

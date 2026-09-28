@@ -12,6 +12,7 @@ src/unplugin.ts     آداپتر Vue / Vite
 src/templates.ts    تولید #build/ui/* تا کلاس‌های Tailwind در بیلد دیده شوند
 playgrounds/nuxt    مصرف به‌صورت ماژول
 playgrounds/vue     مصرف به‌صورت پلاگین Vite
+.storybook/         استوری‌بوک کامپوننت‌ها
 ```
 
 نقشهٔ کار هر پوشه در `README.md` همان پوشه است. نقطهٔ ورود ایجنت‌ها [`AGENTS.md`](AGENTS.md) است. داک ابزارها در [`.agents/skills/`](.agents/skills) و ایندکس [`docs/llms/`](docs/llms/README.md) است.
@@ -27,6 +28,7 @@ pnpm dev        # playground Nuxt
 pnpm dev:vue    # playground Vue
 pnpm test
 pnpm build
+pnpm storybook  # همین ریپو؛ پیش‌فرض فیگما. اپ خودتان: بخش استوری‌بوک
 ```
 
 ## نصب در Nuxt
@@ -195,6 +197,131 @@ app.use(ui)
 `--ui-font-size-label-large: 18px` یعنی هم `typo-size-label-large` و هم `typo-label-large` هجده پیکسل می‌شوند. ارتفاع خط، وزن و فاصلهٔ حروف همان نقش سر جایشان می‌مانند. ویژگی‌ای که ننویسید روی پیش‌فرض فیگما می‌ماند. واحد اندازه، خط و فاصلهٔ حروف px است.
 
 `app.config.ui` این مقیاس را نمی‌گیرد. اورراید از متغیر `--ui-font-size-*`، `--ui-leading-*`، `--ui-font-weight-*`، `--ui-tracking-*` و `--ui-font-family-brand` است، نه از کلاس `text-*` یا `font-*`.
+
+## استوری‌بوک
+
+`pnpm storybook` در همین ریپو برای بررسی خود لایبرری است و پالت پیش‌فرض فیگما را نشان می‌دهد. در اپ خودتان استوری‌ها را کپی نمی‌کنید. همان فایل‌های منتشرشدهٔ `@achareh/ui` را با CSS و پیش‌فرض‌های خودتان اجرا می‌کنید. استوری‌بوک داخل `nuxt dev` یا `vite` روشن نمی‌شود. اگر نمی‌خواهیدش، اسکریپت را صدا نزنید.
+
+رنگ، فاصله، شعاع، ضخامت و فونت از همان CSS اپ می‌آیند. پیش‌فرض variant از همان آبجکتی می‌آید که به `app.config` یا `ui()` می‌دهید. پورت و هاست آرگومان دستور Storybook هستند.
+
+بسته‌ها را devDependency اپ کنید. نسخه را با همین ریپو یکی بگیرید (`^10.6.0`):
+
+```bash
+pnpm add -D storybook @storybook/vue3-vite @storybook/addon-docs @storybook/addon-themes storybook-addon-pseudo-states @vitejs/plugin-vue
+```
+
+پیش‌فرض کامپوننت را یک‌بار بنویسید و هم به اپ بدهید هم به استوری‌بوک. Nuxt آن را در `app.config.ts` می‌گذارد. Vue همان آبجکت را به `ui({ ui })` در `vite.config` می‌دهد.
+
+```ts
+// app/ui.ts در Nuxt، یا src/ui.ts در Vue
+export const ui = {
+  button: {
+    defaultVariants: {
+      weight: 'light'
+    }
+  }
+}
+```
+
+```ts
+// .storybook/main.ts
+import { dirname } from 'node:path'
+import { fileURLToPath } from 'node:url'
+import vue from '@vitejs/plugin-vue'
+import { mergeConfig } from 'vite'
+import type { StorybookConfig } from '@storybook/vue3-vite'
+import uiPlugin from '@achareh/ui/vite'
+import { ui } from '../app/ui'
+
+const componentsDir = dirname(fileURLToPath(import.meta.resolve('@achareh/ui/components/Button.stories.ts')))
+
+const config: StorybookConfig = {
+  stories: [`${componentsDir}/**/*.stories.ts`],
+  addons: [
+    '@storybook/addon-docs',
+    '@storybook/addon-themes',
+    'storybook-addon-pseudo-states'
+  ],
+  framework: {
+    name: '@storybook/vue3-vite',
+    options: {
+      docgen: {
+        plugin: 'vue-component-meta',
+        tsconfig: 'tsconfig.json'
+      }
+    }
+  },
+  async viteFinal(viteConfig) {
+    return mergeConfig(viteConfig, {
+      plugins: [vue(), ...uiPlugin({ ui })]
+    })
+  }
+}
+
+export default config
+```
+
+اگر در `nuxt.config` برای ماژول `theme` یا `prefix` گذاشته‌اید، همان را هم به `uiPlugin({ prefix, theme, ui })` بدهید. Storybook فایل `nuxt.config` و `app.config` را خودش نمی‌خواند.
+
+`preview` باید CSS اپ را بیاورد، نه CSS جدا. آن فایل همان‌جا `@import "@achareh/ui"` و `@theme` رنگ و `@font-face` فونت را دارد. Nuxt: `app/assets/css/main.css`. Vue: `src/assets/main.css`.
+
+```ts
+// .storybook/preview.ts
+import type { Preview } from '@storybook/vue3-vite'
+import { withThemeByClassName } from '@storybook/addon-themes'
+import App from '@achareh/ui/components/App.vue'
+import '../app/assets/css/main.css'
+import './preview.css'
+
+const preview: Preview = {
+  parameters: {
+    backgrounds: { disable: true }
+  },
+  decorators: [
+    withThemeByClassName({
+      themes: { light: 'light', dark: 'dark' },
+      defaultTheme: 'light'
+    }),
+    () => ({
+      components: { App },
+      template: `
+        <App dir="rtl" class="min-h-0">
+          <div style="padding: 1rem;">
+            <story />
+          </div>
+        </App>
+      `
+    })
+  ]
+}
+
+export default preview
+```
+
+```css
+/* .storybook/preview.css */
+html,
+body {
+  direction: rtl;
+  text-align: right;
+}
+```
+
+پورت و هاست را در اسکریپت اپ بگذارید:
+
+```bash
+storybook dev -p 6006 --host 127.0.0.1
+```
+
+```json
+{
+  "scripts": {
+    "storybook": "storybook dev -p 6006 --host 127.0.0.1"
+  }
+}
+```
+
+سوییچ تم در نوار Storybook کلاس `dark` را روی `html` می‌گذارد. استوری جدید لازم نیست؛ با عوض کردن CSS یا آبجکت `ui`، همان استوری‌های `Button` و `Input` پیش‌فرض شما را نشان می‌دهند.
 
 ## توکن‌های فیگما
 

@@ -14,5 +14,6 @@ Full map: `src/runtime/components/README.md`. Copy `Button.vue`.
 - Render with Reka `Primitive` and `as`. `data-slot` equals the theme slot key.
 - Root class: `ui.<slot>({ class: [props.ui?.<slot>, props.class] })`.
 - With `inheritAttrs: false`, put `data-slot` before `v-bind="$attrs"`.
-- Do not add Tailwind classes in the SFC. Do not default `color` / `variant` / `size` in `withDefaults`.
+- Do not add Tailwind classes in the SFC. Do not default `color` / `variant` / `size` or other theme variants (`weight`, `paddingX`, `paddingY`, `radius`) in `withDefaults`.
 - File name is PascalCase without the `U` prefix.
+- Add `<Pascal>.stories.ts` beside the SFC. Storybook lives in `.storybook/`.
