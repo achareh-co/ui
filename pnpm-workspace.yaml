@@ -19,6 +19,8 @@ catalog:
   "@storybook/addon-themes": ^10.6.0
   "@storybook/vue3-vite": ^10.6.0
   "@nuxt/schema": ^4.5.2
+  "@nuxtjs/storybook": 9.1.0-29411911.f34c865
+  "@storybook-vue/nuxt": 9.1.0-29411911.f34c865
   "@tailwindcss/vite": ^4.3.3
   "@types/node": ^24.5.2
   "@vitejs/plugin-vue": ^6.0.9

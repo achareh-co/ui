@@ -4,8 +4,8 @@
 
 | پوشه | آداپتر | اورراید رنگ نمونه |
 | --- | --- | --- |
-| `nuxt/` | `modules: ['@achareh/ui']` | بلوک `@theme` در `app/assets/css/main.css` |
-| `vue/` | `ui()` در Vite + `app.use` | بلوک `@theme` در `src/assets/main.css` |
+| `nuxt/` | `modules: ['@achareh/ui']` | پالت و فونت آچاره کالا در `app/assets/css/main.css` |
+| `vue/` | `ui()` در Vite + `app.use` | همان پالت و فونت در `src/assets/main.css` |
 
 رنگ در هر دو از CSS اپ می‌آید، نه از `app.config` یا گزینهٔ `ui()`. هر دو صفحه داخل `UApp` هستند که پیش‌فرض `dir="rtl"` می‌گذارد.
 

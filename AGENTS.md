@@ -61,6 +61,7 @@ pnpm typecheck
 pnpm test
 pnpm build
 pnpm storybook      # http://localhost:6006
+pnpm storybook:nuxt # همان استوری‌ها داخل playgrounds/nuxt
 ```
 
 ## نقشهٔ پوشه‌ها

@@ -10,7 +10,7 @@
 | `src/main.ts` | `createApp(App).use(ui)` از `@achareh/ui/vue-plugin`، بعد CSS. |
 | `index.html` | `<html lang="fa" dir="rtl">` و `#app` با کلاس `isolate`. |
 | `src/App.vue` | نمونه داخل `UApp` (پیش‌فرض `dir="rtl"`). |
-| `src/assets/main.css` | `@import "tailwindcss"` سپس `@import "@achareh/ui"`. بلوک `@theme` پله‌های `primary` را با `#0055ff`، `#99bbff`، `#ffffff` و `#003322` عوض می‌کند. کامنت `--ui-spacing-*`، `--ui-radius-*`، `--ui-border-width-*`، `--ui-font-size-*` و `--ui-emphasis-*` نمونهٔ اورراید بقیه است. |
+| `src/assets/main.css` | `@import "tailwindcss"` سپس `@import "@achareh/ui"`. بلوک `@theme` و فونت همان `playgrounds/nuxt/app/assets/css/main.css` است: پالت آچاره کالا و `KalamehWebFaNum`. فایل فونت در `src/assets/fonts/` است. |
 | `src/env.d.ts` | فقط `vite/client`. `components.d.ts` و `auto-imports.d.ts` از `include` در `tsconfig.json` می‌آیند. |
 
 ## قرارداد

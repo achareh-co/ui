@@ -99,7 +99,8 @@
     "tokens:palette": "node scripts/update-palette.mjs",
     "tokens:emphasis": "node scripts/update-emphasis.mjs",
     "storybook": "STORYBOOK_DISABLE_TELEMETRY=1 storybook dev -p 6006 --no-open --disable-telemetry",
-    "storybook:build": "STORYBOOK_DISABLE_TELEMETRY=1 storybook build -o .storybook/dist --disable-telemetry"
+    "storybook:build": "STORYBOOK_DISABLE_TELEMETRY=1 storybook build -o .storybook/dist --disable-telemetry",
+    "storybook:nuxt": "pnpm --filter @achareh/playground-nuxt storybook"
   },
   "dependencies": {
     "@nuxt/kit": "catalog:",

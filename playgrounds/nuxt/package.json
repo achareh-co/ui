@@ -6,12 +6,24 @@
     "dev": "nuxt dev",
     "build": "nuxt build",
     "generate": "nuxt generate",
-    "preview": "nuxt preview"
+    "preview": "nuxt preview",
+    "storybook": "STORYBOOK_DISABLE_TELEMETRY=1 storybook dev -p 6006 --no-open --disable-telemetry",
+    "storybook:build": "STORYBOOK_DISABLE_TELEMETRY=1 storybook build -o .storybook/dist --disable-telemetry"
   },
   "dependencies": {
     "@achareh/ui": "workspace:*",
     "nuxt": "catalog:",
     "tailwindcss": "catalog:",
     "vue": "catalog:"
+  },
+  "devDependencies": {
+    "@nuxtjs/storybook": "catalog:",
+    "@storybook-vue/nuxt": "catalog:",
+    "@storybook/addon-docs": "catalog:",
+    "@storybook/addon-themes": "catalog:",
+    "@storybook/vue3-vite": "catalog:",
+    "storybook": "catalog:",
+    "storybook-addon-pseudo-states": "catalog:",
+    "vite": "^8.2.0"
   }
 }
