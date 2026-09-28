@@ -3,7 +3,7 @@ export default defineNuxtConfig({
   css: ['~/assets/css/main.css'],
   app: {
     head: {
-      htmlAttrs: { lang: 'fa', dir: 'rtl' }
+      htmlAttrs: { lang: 'fa-IR' }
     }
   },
   compatibilityDate: '2026-09-22',

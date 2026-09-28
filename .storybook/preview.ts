@@ -25,9 +25,19 @@ const preview: Preview = {
     }),
     () => ({
       components: { App },
+      setup() {
+        if (typeof document !== 'undefined') document.documentElement.removeAttribute('dir')
+      },
       template: `
         <App dir="rtl" class="min-h-0">
-          <div style="padding: 1rem;">
+          <div
+            dir="rtl"
+            :style="{
+              padding: '1rem',
+              direction: 'rtl',
+              textAlign: 'right',
+            }"
+          >
             <story />
           </div>
         </App>

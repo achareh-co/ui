@@ -4,6 +4,11 @@ import App from '@achareh/ui/components/App.vue'
 import '../app/assets/css/main.css'
 import './preview.css'
 
+const resetDocumentDirection = () => {
+  if (typeof document === 'undefined') return
+  document.documentElement.removeAttribute('dir')
+}
+
 const preview: Preview = {
   parameters: {
     controls: {
@@ -26,9 +31,20 @@ const preview: Preview = {
     }),
     () => ({
       components: { App },
+      setup() {
+        resetDocumentDirection()
+      },
       template: `
         <App dir="rtl" class="min-h-0">
-          <div style="padding: 1rem;">
+          <div
+            dir="rtl"
+            :style="{
+              fontFamily: 'KalamehWebFaNum, sans-serif',
+              padding: '1rem',
+              direction: 'rtl',
+              textAlign: 'right',
+            }"
+          >
             <story />
           </div>
         </App>

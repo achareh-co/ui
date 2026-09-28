@@ -209,6 +209,7 @@
 }
 
 :root {
+  direction: rtl;
   --ui-font-family-brand: KalamehWebFaNum, sans-serif;
   --ui-font-weight-display-large: 700;
   --ui-font-weight-display-medium: 700;
@@ -220,4 +221,10 @@
   --ui-font-weight-title-semilarge: 700;
   --ui-font-weight-title-medium: 700;
   --ui-font-weight-title-small: 700;
+}
+
+body {
+  direction: rtl;
+  text-align: right;
+  font-family: var(--ui-font-family-brand);
 }

@@ -1,5 +1,6 @@
-html,
+/* App CSS sets :root and body to RTL. Only the story wrapper stays RTL. */
+:root,
 body {
-  direction: rtl;
-  text-align: right;
+  direction: ltr;
+  text-align: left;
 }

@@ -6,14 +6,14 @@
 
 | فایل | کار |
 | --- | --- |
-| `nuxt.config.ts` | `modules: ['@achareh/ui']`، CSS اپ و `htmlAttrs` با `lang="fa"` و `dir="rtl"`. |
+| `nuxt.config.ts` | `modules: ['@achareh/ui']`، CSS اپ و `htmlAttrs` با `lang="fa-IR"`. جهت سند در CSS است، نه روی `dir` عنصر `html`. |
 | `app/app.config.ts` | خالی؛ در صورت نیاز `ui.<name>.defaultVariants` یا `slots`. رنگ این‌جا نیست. |
 | `app/app.vue` | `NuxtPage` داخل `UApp`. |
 | `app/pages/index.vue` | نمونهٔ `UButton` / `UInput` و کلاس `dark` روی `documentElement`. |
-| `app/assets/css/main.css` | `@import "tailwindcss"` سپس `@import "@achareh/ui"`. بلوک `@theme` پالت آچاره کالا است (`primary-40` = `#482b9e`). `:root` خانوادهٔ فونت را `KalamehWebFaNum` می‌کند و وزن display / headline / title را ۷۰۰ می‌گذارد. فایل فونت در `app/assets/fonts/` است. فاصله، شعاع، ضخامت border و emphasis از قبل همان مقیاس فیگما هستند و این‌جا اورراید نمی‌شوند. |
+| `app/assets/css/main.css` | `@import "tailwindcss"` سپس `@import "@achareh/ui"`. بلوک `@theme` پالت آچاره کالا است (`primary-40` = `#482b9e`). `:root` جهت را `rtl` می‌کند، خانوادهٔ فونت را `KalamehWebFaNum` می‌گذارد و وزن display / headline / title را ۷۰۰ می‌کند. `body` همان جهت، `text-align: right` و فونت را می‌گیرد. فایل فونت در `app/assets/fonts/` است. فاصله، شعاع، ضخامت border و emphasis از قبل همان مقیاس فیگما هستند و این‌جا اورراید نمی‌شوند. |
 | `.storybook/main.ts` | فریم‌ورک `@storybook-vue/nuxt`. استوری جدید این‌جا نیست؛ glob همان `src/runtime/components/**/*.stories.ts` کتابخانه است. `viteFinal` فقط `paths.mjs` تولیدی Nuxt را مثل حالت dev اینلاین می‌کند، چون فریم‌ورک Nuxt را با `dev: false` بالا می‌آورد. |
-| `.storybook/preview.ts` | CSS همین اپ، کلاس `light` / `dark` روی `html`، و پیچیدن هر استوری در `App` با `dir="rtl"`. |
-| `.storybook/preview.css` | `html` راست‌به‌چپ، هم‌جهت با `App`. |
+| `.storybook/preview.ts` | CSS همین اپ، کلاس `light` / `dark` روی `html`، و پیچیدن هر استوری در `App` با `dir="rtl"`. ویژگی `dir` از `html` برداشته می‌شود تا به کروم استوری‌بوک نرسد. |
+| `.storybook/preview.css` | `:root` و `body` را به چپ‌به‌راست برمی‌گرداند. فقط قاب استوری راست‌به‌چپ می‌ماند. |
 
 ## قرارداد
 

@@ -303,7 +303,7 @@ const preview: Preview = {
       components: { App },
       template: `
         <App dir="rtl" class="min-h-0">
-          <div style="padding: 1rem;">
+          <div dir="rtl" :style="{ padding: '1rem', direction: 'rtl', textAlign: 'right' }">
             <story />
           </div>
         </App>
@@ -316,11 +316,13 @@ export default preview
 ```
 
 ```css
-/* .storybook/preview.css */
-html,
+/* .storybook/preview.css
+   CSS اپ `:root` و `body` را راست‌به‌چپ می‌کند. این‌جا برگردانده می‌شود
+   تا خود استوری‌بوک نچرخد. فقط قاب `App` راست‌به‌چپ می‌ماند. */
+:root,
 body {
-  direction: rtl;
-  text-align: right;
+  direction: ltr;
+  text-align: left;
 }
 ```
 
