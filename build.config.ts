@@ -17,6 +17,7 @@ export default defineBuildConfig({
   hooks: {
     'mkdist:entry:options'(_ctx, _entry, options) {
       options.addRelativeDeclarationExtensions = false
+      options.pattern = ['**', '!**/README.md']
     }
   }
 })

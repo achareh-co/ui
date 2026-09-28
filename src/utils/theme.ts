@@ -14,7 +14,7 @@ function blankClasses(value: unknown): unknown {
   return value
 }
 
-export function applyDefaultVariants(theme: any, defaults?: { color?: string, size?: string }) {
+export function applyDefaultVariants(theme: any, defaults?: { color?: string }) {
   if (!defaults || !theme?.defaultVariants) {
     return theme
   }
@@ -22,9 +22,6 @@ export function applyDefaultVariants(theme: any, defaults?: { color?: string, si
   const defaultVariants = { ...theme.defaultVariants }
   if (defaults.color && defaultVariants.color === 'primary') {
     defaultVariants.color = defaults.color
-  }
-  if (defaults.size && defaultVariants.size === 'md') {
-    defaultVariants.size = defaults.size
   }
 
   return {

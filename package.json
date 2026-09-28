@@ -35,10 +35,11 @@
     "./composables/*": {
       "types": "./dist/runtime/composables/*.d.ts",
       "import": "./dist/runtime/composables/*.js"
-    }
-  },
-  "imports": {
-    "#build/ui.css": "./.nuxt/ui.static.css"
+    },
+    "./types": {
+      "types": "./dist/runtime/types/index.d.ts"
+    },
+    "./package.json": "./package.json"
   },
   "style": "./dist/runtime/index.css",
   "main": "./dist/module.mjs",
@@ -68,19 +69,22 @@
       ],
       "composables/*": [
         "./dist/runtime/composables/*.d.ts"
+      ],
+      "types": [
+        "./dist/runtime/types/index.d.ts"
       ]
     }
   },
   "files": [
     "dist",
-    "vue-plugin.d.ts",
-    ".nuxt/ui.static.css"
+    "vue-plugin.d.ts"
   ],
   "sideEffects": [
     "**/*.css"
   ],
   "scripts": {
     "build": "nuxt-module-build build",
+    "prepack": "nuxt-module-build prepare && nuxt-module-build build",
     "dev:prepare": "nuxt-module-build build --stub && nuxt-module-build prepare && pnpm --filter @achareh/playground-nuxt exec nuxt prepare",
     "dev": "pnpm --filter @achareh/playground-nuxt dev",
     "dev:vue": "pnpm --filter @achareh/playground-vue dev",

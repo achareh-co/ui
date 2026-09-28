@@ -44,11 +44,11 @@ src/templates.ts    src/theme را به فایل‌های اسکن‌شدنی Ta
 - [ ] re-export تایپ‌ها در `src/runtime/types/index.ts`
 - [ ] فیلد `AppConfigUI` در `src/templates.ts` (`appConfigTypes`)
 - [ ] `test/components/<Pascal>.spec.ts`
-- [ ] `src/runtime/components/<Pascal>.stories.ts`
+- [ ] `src/runtime/components/<Pascal>.stories.ts` بدون variant در `args`
 - [ ] یک مثال در `playgrounds/nuxt` و `playgrounds/vue`
-- [ ] `pnpm test` و `pnpm typecheck`
+- [ ] `pnpm lint`، `pnpm test` و `pnpm typecheck`
 
-`pnpm dev:prepare` باید قبل از تست خورده باشد تا `.nuxt/ui/*` ساخته شود.
+`pnpm test` تم را مستقیم از `src/theme` می‌سازد و به `.nuxt` نیاز ندارد. `pnpm typecheck`، `pnpm dev` و `pnpm storybook` نیاز دارند: بعد از clone یا تغییر `src/theme` یک بار `pnpm dev:prepare` بزن. CI (`.github/workflows/ci.yml`) همین ترتیب را اجرا می‌کند: `dev:prepare`، lint، typecheck، test، build.
 
 ## دستورها
 
@@ -74,7 +74,8 @@ pnpm storybook      # http://localhost:6006
 | [`src/runtime/components`](src/runtime/components/README.md) | الگوی Vue |
 | [`src/runtime/composables`](src/runtime/composables/README.md) | `useComponentProps` |
 | [`src/runtime/utils`](src/runtime/utils/README.md) | `tv` |
-| [`src/runtime/types`](src/runtime/types/README.md) | تایپ عمومی تم و re-export |
+| [`src/runtime/types`](src/runtime/types/README.md) | تایپ عمومی تم و re-export؛ مسیر پکیج `@achareh/ui/types` |
+| [`src/runtime/storybook`](src/runtime/storybook/README.md) | `StoryIcon` فقط برای استوری‌ها |
 | [`src/runtime/plugins`](src/runtime/plugins/README.md) | پلاگین Nuxt؛ رنگ این‌جا تزریق نمی‌شود |
 | [`src/runtime/vue`](src/runtime/vue/README.md) | پلاگین Vue |
 | [`src/runtime/vue/stubs`](src/runtime/vue/stubs/README.md) | جعل `#imports` برای Vue |
@@ -83,7 +84,9 @@ pnpm storybook      # http://localhost:6006
 | [`playgrounds`](playgrounds/README.md) | تفاوت دو مصرف‌کننده |
 | [`playgrounds/nuxt`](playgrounds/nuxt/README.md) | ماژول |
 | [`playgrounds/vue`](playgrounds/vue/README.md) | `ui()` بعد از `vue()` |
-| [`test`](test/README.md) | aliasهای ویتست |
+| [`scripts`](scripts/README.md) | به‌روزرسانی ثابت توکن از JSON فیگما |
+| [`figma/configs`](figma/configs/README.md) | خروجی JSON فیگما، ورودی `scripts` |
+| [`test`](test/README.md) | تم از `src/theme`، aliasهای ویتست، تست کد بیلد |
 | [`test/components`](test/components/README.md) | snapshot و axe |
 | [`test/mocks`](test/mocks/README.md) | `appConfig` تست |
 

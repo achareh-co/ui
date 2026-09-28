@@ -26,7 +26,7 @@ const config: StorybookConfig = {
   },
   async viteFinal(viteConfig) {
     return mergeConfig(viteConfig, {
-      plugins: [vue(), ...ui()]
+      plugins: [vue(), ...ui({ dts: false })]
     })
   }
 }

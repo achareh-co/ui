@@ -1,4 +1,4 @@
-import { describe, expect, it } from 'vitest'
+import { describe, expect, it, vi } from 'vitest'
 import { mount } from '@vue/test-utils'
 import { axe } from 'vitest-axe'
 import Button from '../../src/runtime/components/Button.vue'
@@ -69,6 +69,18 @@ describe('Button', () => {
     expect(wrapper.find('[data-slot="label"]').classes()).toContain('font-bold')
   })
 
+  it('applies app.config slots and lets the ui prop win', () => {
+    appConfig.ui.button = { slots: { base: 'px-10', label: 'underline' } }
+    const fromConfig = mount(Button, { props: { label: 'Save' } })
+    const fromInstance = mount(Button, { props: { label: 'Save', ui: { base: 'px-2' } } })
+
+    expect(fromConfig.classes()).toContain('px-10')
+    expect(fromConfig.find('[data-slot="label"]').classes()).toContain('underline')
+    expect(fromInstance.classes()).toContain('px-2')
+    expect(fromInstance.classes()).not.toContain('px-10')
+    delete appConfig.ui.button
+  })
+
   it('renders leading and trailing slots', () => {
     const wrapper = mount(Button, {
       props: { label: 'Next' },
@@ -114,12 +126,59 @@ describe('Button', () => {
     })
 
     expect(wrapper.attributes('disabled')).toBeDefined()
+    expect(wrapper.attributes('data-disabled')).toBeDefined()
+    expect(wrapper.attributes('aria-disabled')).toBeUndefined()
+  })
+
+  it('disables a link without href, focus or click', async () => {
+    const onClick = vi.fn()
+    const wrapper = mount(Button, {
+      props: { label: 'Home', to: '/home', disabled: true },
+      attrs: { onClick }
+    })
+
+    expect(wrapper.element.tagName).toBe('A')
+    expect(wrapper.attributes('href')).toBeUndefined()
+    expect(wrapper.attributes('disabled')).toBeUndefined()
+    expect(wrapper.attributes('aria-disabled')).toBe('true')
+    expect(wrapper.attributes('tabindex')).toBe('-1')
+    expect(wrapper.attributes('data-disabled')).toBeDefined()
+
+    await wrapper.trigger('click')
+    expect(onClick).not.toHaveBeenCalled()
+  })
+
+  it('calls the click listener when enabled', async () => {
+    const onClick = vi.fn()
+    const wrapper = mount(Button, {
+      props: { label: 'Home', to: '/home' },
+      attrs: { onClick }
+    })
+
+    await wrapper.trigger('click')
+    expect(onClick).toHaveBeenCalledOnce()
+    expect(wrapper.attributes('data-disabled')).toBeUndefined()
+  })
+
+  it('marks a loading button busy', () => {
+    const wrapper = mount(Button, {
+      props: { label: 'Save', loading: true }
+    })
+
+    expect(wrapper.attributes('aria-busy')).toBe('true')
   })
 
   it('reads default variants from app config', () => {
     appConfig.ui.button = { defaultVariants: { weight: 'light' } }
     const wrapper = mount(Button, { props: { label: 'Save' } })
     expect(wrapper.classes()).toContain('typo-caption-medium')
+    delete appConfig.ui.button
+  })
+
+  it('reads a boolean default variant from app config', () => {
+    appConfig.ui.button = { defaultVariants: { block: true } }
+    expect(mount(Button, { props: { label: 'Save' } }).classes()).toContain('w-full')
+    expect(mount(Button, { props: { label: 'Save', block: false } }).classes()).not.toContain('w-full')
     delete appConfig.ui.button
   })
 

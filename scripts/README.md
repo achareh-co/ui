@@ -13,4 +13,4 @@
 | `update-palette.mjs` | `paletteScale` در `src/utils/colors.ts`. هگز از `$value.hex`. `semanticColors` دست‌نویس می‌ماند. اگر پلهٔ یک نقش semantic در پالت نباشد، اسکریپت خطا می‌دهد و فایلی نمی‌نویسد. |
 | `update-emphasis.mjs` | `emphasisScale` در `src/utils/colors.ts`. مقدار، درصد صحیح ۰ تا ۱۰۰ است. |
 
-خواندن مشترک DTCG در `read-figma-tokens.mjs` است. اگر مسیر مورد انتظار نباشد یا مقدار از نوع همان اسکریپت نباشد، خطا می‌دهد و فایلی نمی‌نویسد.
+خواندن مشترک DTCG در `read-figma-tokens.mjs` است. اگر مسیر مورد انتظار نباشد یا مقدار از نوع همان اسکریپت نباشد، خطا می‌دهد و فایلی نمی‌نویسد. مسیر JSON دیگر آرگومان اول است: `pnpm tokens:spacing -- ./other.json`. `jsonPath` جداکنندهٔ `--` را که pnpm به اسکریپت می‌فرستد نادیده می‌گیرد. تایپ exportها در `read-figma-tokens.d.mts` است؛ امضای تابع را عوض کردی، آن را هم عوض کن. تست: `test/scripts.spec.ts`.

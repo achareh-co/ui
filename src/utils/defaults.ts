@@ -1,14 +1,15 @@
-export type Color = 'primary' | 'secondary' | 'success' | 'info' | 'warning' | 'error' | (string & {})
-export type Size = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | (string & {})
+export type Color = 'primary' | 'secondary' | 'tertiary' | 'success' | 'info' | 'warning' | 'error' | (string & {})
 
 export interface ThemeOptions {
   /**
-   * Semantic color aliases that generate component variants.
-   * @defaultValue ['primary', 'secondary', 'success', 'info', 'warning', 'error']
+   * Semantic colors that get `color` variants. A name outside the built-in Figma roles also needs
+   * `--color-<name>`, `--color-on-<name>`, `--color-<name>-container`, `--color-<name>-container-hover`,
+   * `--color-<name>-container-focused` and `--color-on-<name>-container` in the app `@theme`.
+   * @defaultValue ['primary', 'secondary', 'tertiary', 'success', 'info', 'warning', 'error']
    */
   colors?: Color[]
   /**
-   * Add `transition-colors` on interactive components.
+   * Add the background, color, border and shadow transition on interactive components.
    * @defaultValue true
    */
   transitions?: boolean
@@ -18,11 +19,10 @@ export interface ThemeOptions {
    */
   unstyled?: boolean
   /**
-   * Replace default `color: primary` and `size: md` across themes.
+   * Replace the default `color: 'primary'` across themes.
    */
   defaultVariants?: {
     color?: Color
-    size?: Size
   }
   /**
    * Tailwind prefix, matching `@import "tailwindcss" prefix(tw)`.
@@ -42,12 +42,11 @@ export interface ModuleOptions {
 export const defaultOptions: Required<Pick<ModuleOptions, 'prefix'>> & { theme: Required<ThemeOptions> } = {
   prefix: 'U',
   theme: {
-    colors: ['primary', 'secondary', 'success', 'info', 'warning', 'error'],
+    colors: ['primary', 'secondary', 'tertiary', 'success', 'info', 'warning', 'error'],
     transitions: true,
     unstyled: false,
     defaultVariants: {
-      color: 'primary',
-      size: 'md'
+      color: 'primary'
     },
     prefix: ''
   }

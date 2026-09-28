@@ -12,8 +12,8 @@ export interface AppProps {
    */
   as?: any
   /**
-   * Reading direction forwarded to Reka UI.
-   * @defaultValue 'ltr'
+   * Reading direction set on the root element and forwarded to Reka UI.
+   * @defaultValue 'rtl'
    */
   dir?: 'ltr' | 'rtl'
   class?: any
@@ -33,17 +33,19 @@ import { useComponentProps } from '../composables/useComponentProps'
 import { tv } from '../utils/tv'
 
 const _props = withDefaults(defineProps<AppProps>(), {
-  dir: 'ltr'
+  dir: 'rtl'
 })
 defineSlots<AppSlots>()
 
 const props = useComponentProps('app', _props)
 const appConfig = useAppConfig()
 
-const ui = computed(() => tv({
+const recipe = computed(() => tv({
   extend: theme,
   ...(appConfig.ui?.app || {})
-})())
+}))
+
+const ui = computed(() => recipe.value())
 </script>
 
 <template>
@@ -51,6 +53,7 @@ const ui = computed(() => tv({
     <Primitive
       :as="props.as"
       data-slot="root"
+      :dir="props.dir"
       :class="ui.root({ class: [props.ui?.root, props.class] })"
     >
       <slot />

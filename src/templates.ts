@@ -75,9 +75,7 @@ function themeModule(theme: unknown, options: ModuleOptions) {
 }
 
 function appConfigTypes() {
-  return `import type { defaultConfig } from 'tailwind-variants'
-
-interface ComponentThemeOverride {
+  return `interface ComponentThemeOverride {
   slots?: Record<string, any>
   variants?: Record<string, any>
   compoundVariants?: any[]
@@ -85,8 +83,6 @@ interface ComponentThemeOverride {
 }
 
 interface AppConfigUI {
-  prefix?: string
-  tv?: typeof defaultConfig
   app?: ComponentThemeOverride
   button?: ComponentThemeOverride
   input?: ComponentThemeOverride
@@ -143,12 +139,6 @@ export function getTemplates(options: ModuleOptions, nuxt?: Nuxt): NuxtTemplate[
       }
       return `${layerSources}${generateThemeCss(resolved, { includeSources: true })}`
     }
-  })
-
-  templates.push({
-    filename: 'ui.static.css',
-    write: true,
-    getContents: () => generateThemeCss(resolved, { includeSources: false })
   })
 
   templates.push({

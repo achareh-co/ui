@@ -1,7 +1,7 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`Button > renders a primary button 1`] = `
-"<button data-slot="base" type="button" class="relative inline-flex flex-nowrap items-center justify-center gap-0 align-middle text-center whitespace-nowrap no-underline appearance-none cursor-pointer select-none border-0 border-transparent disabled:cursor-not-allowed focus-visible:not-disabled:border-transparent focus-visible:not-disabled:shadow-[0_0_0_3px_var(--color-primary),0_0_0_1px_var(--color-surface)] transition-[background-color,color,border-color,box-shadow] duration-200 ease-[ease] typo-title-medium py-4 rounded-xs bg-primary text-on-primary hover:not-disabled:bg-primary/high active:not-disabled:bg-primary/strong focus-visible:not-disabled:bg-primary/strong disabled:bg-surface-container-low disabled:text-on-surface-variant px-4 min-h-14">
+"<button data-slot="base" type="button" class="relative inline-flex flex-nowrap items-center justify-center gap-0 align-middle text-center whitespace-nowrap no-underline appearance-none cursor-pointer select-none border-0 border-transparent data-disabled:cursor-not-allowed focus-visible:not-data-disabled:border-transparent focus-visible:not-data-disabled:shadow-[0_0_0_3px_var(--color-primary)] transition-[background-color,color,border-color,box-shadow] duration-200 ease-[ease] typo-title-medium py-4 rounded-xs bg-primary text-on-primary hover:not-data-disabled:bg-primary/high active:not-data-disabled:bg-primary/strong focus-visible:not-data-disabled:bg-primary/strong data-disabled:bg-surface-container-low data-disabled:text-on-surface-variant px-4 min-h-14">
   <!--v-if--><span data-slot="label" class="inline-flex min-w-0 items-center justify-center">Save</span>
   <!--v-if-->
 </button>"

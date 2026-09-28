@@ -1,5 +1,5 @@
 ---
-description: Vitest mounts runtime SFCs against the generated theme and a shared appConfig mock
+description: Vitest mounts runtime SFCs against the source theme and a shared appConfig mock
 globs: test/**/*.ts,vitest.config.ts
 alwaysApply: false
 ---
@@ -8,9 +8,10 @@ alwaysApply: false
 
 Maps: `test/README.md`, `test/components/README.md`, `test/mocks/README.md`.
 
-- Run `pnpm dev:prepare` so `.nuxt/ui/*` exists. Aliases: `#build/*` → `.nuxt/`, `#imports` → `test/mocks/imports.ts`.
+- `vitest.config.ts` serves `#build/ui/<kebab>` from `src/theme` through `resolveTheme` on every run. Tests do not need `pnpm dev:prepare`; `pnpm typecheck` still does.
+- `#imports` → `test/mocks/imports.ts`. Do not point it at `src/shims` or the Vue stub.
 - Mount `src/runtime/components/<Pascal>.vue` directly. Do not load the Vite `ui()` plugin.
-- Each spec covers default snapshot, variant classes, `ui` slot merge, slots, and `vitest-axe`.
+- Each component spec covers default snapshot, variant classes, `ui` slot merge, slots, and `vitest-axe`.
+- Build code has its own specs: `test/utils/`, `test/templates.spec.ts`, `test/theme-css.spec.ts`, `test/scripts.spec.ts`.
 - Assert semantic classes (`bg-primary`), not palette colors.
 - Reset any `appConfig.ui` mutation before the test ends.
-- `useHead` in the mock stays empty. Do not point `#imports` at `src/shims` or the Vue stub.

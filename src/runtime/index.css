@@ -5,9 +5,8 @@
 @variant dark (&:where(.dark, .dark *));
 
 @layer theme {
-  :root, :host {
-    --ui-container: 80rem;
-
+  /* Repeated on .light and .dark so nested color-mode sections re-resolve the --ui-color-* references. */
+  :root, :host, .light, .dark {
     --ui-text-dimmed: color-mix(in oklab, var(--ui-color-on-surface) var(--ui-emphasis-medium), transparent);
     --ui-text-muted: var(--ui-color-on-surface-variant);
     --ui-text-toned: color-mix(in oklab, var(--ui-color-on-surface) var(--ui-emphasis-high), transparent);

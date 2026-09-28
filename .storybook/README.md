@@ -8,12 +8,12 @@
 
 | فایل | کار |
 | --- | --- |
-| `main.ts` | glob استوری‌ها، addonهای docs و themes و pseudo-states، و `ui()` |
-| `preview.ts` | کلاس `light` / `dark` روی `html`، و پیچیدن هر استوری در `App` با `dir="rtl"` |
+| `main.ts` | glob استوری‌ها، addonهای docs و themes و pseudo-states، و `ui({ dts: false })`. استوری‌بوک `components.d.ts` و `auto-imports.d.ts` ریشه را بازنویسی نمی‌کند |
+| `preview.ts` | کلاس `light` / `dark` روی `html`، و پیچیدن هر استوری در `App` با `dir="rtl"` (همان پیش‌فرض `App`؛ `App` آن را روی ریشهٔ DOM و `ConfigProvider` می‌گذارد) |
 | `preview.css` | `@import "tailwindcss"` و CSS ران‌تایم. `html` راست‌به‌چپ است، هم‌جهت با `App` |
 | [`src/runtime/storybook/StoryIcon.vue`](../src/runtime/storybook/README.md) | SVG اینلاین استوری‌ها. کنار runtime می‌ماند تا از داخل پکیج هم import شود |
 
-استوری هر کامپوننت کنار خود SFC است: `Button.stories.ts` و `Input.stories.ts`. عنوان‌ها `Components/Button` و `Components/Input` هستند. اسلات آیکون دکمه `leading` و `trailing` است. قاب استوری راست‌به‌چپ است. متن نمونه فارسی است. نام و مقدار prop، مثل `solid` و `primary`، انگلیسی می‌ماند. این پوشه استوری‌بوک خود لایبرری است و پیش‌فرض فیگما را نشان می‌دهد. نحوهٔ اجرای همین استوری‌ها در اپ مصرف‌کننده در [README](../README.md) بخش «استوری‌بوک» است.
+استوری هر کامپوننت کنار خود SFC است: `Button.stories.ts` و `Input.stories.ts`. عنوان‌ها `Components/Button` و `Components/Input` هستند. اسلات آیکون دکمه `leading` و `trailing` است. variantها در `args` نیستند تا `defaultVariants` کانفیگ دیده شود؛ پیش‌فرض تم در جدول کنترل از `table.defaultValue` می‌آید. قاب استوری راست‌به‌چپ است. متن نمونه فارسی است. نام و مقدار prop، مثل `solid` و `primary`، انگلیسی می‌ماند. این پوشه استوری‌بوک خود لایبرری است و پیش‌فرض فیگما را نشان می‌دهد. نحوهٔ اجرای همین استوری‌ها در اپ مصرف‌کننده در [README](../README.md) بخش «استوری‌بوک» است.
 
 حالت hover / pressed / focused در استوری `States` دکمه با `storybook-addon-pseudo-states` روی کلاس‌های `is-hover` و `is-pressed` و `is-focused` ثابت می‌شود، چون این کامپوننت متغیر CSS جدا برای آن حالت‌ها ندارد.
 

@@ -9,8 +9,8 @@ alwaysApply: false
 Maps: `playgrounds/README.md`, `playgrounds/nuxt/README.md`, `playgrounds/vue/README.md`.
 
 - Do not implement library components here. Show them through the adapter with no manual component import.
-- Nuxt: `modules: ['@achareh/ui']`, colors in `app/app.config.ts`.
-- Vue: `plugins: [vue(), ui(...)]` in that order, plus `app.use(ui)` in `src/main.ts`. Both steps stay.
-- CSS is `@import "tailwindcss"` then `@import "@achareh/ui"`.
-- Dark mode is the `dark` class on `documentElement`.
-- A UI example lands in both playgrounds. Primary is `blue` in Nuxt and `violet` in Vue on purpose.
+- Nuxt: `modules: ['@achareh/ui']`; `UApp` wraps `NuxtPage` in `app/app.vue`.
+- Vue: `plugins: [vue(), ui(...)]` in that order, plus `app.use(ui)` in `src/main.ts`. Both steps stay. `UApp` wraps `src/App.vue`.
+- CSS is `@import "tailwindcss"` then `@import "@achareh/ui"`. Color overrides live in the same `@theme` block in both apps, not in `app.config`.
+- Dark mode is the `dark` class on `documentElement`. Direction comes from `UApp` (`rtl` by default); the HTML root is `lang="fa" dir="rtl"` in both.
+- A UI example lands in both playgrounds.

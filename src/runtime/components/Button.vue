@@ -59,7 +59,7 @@ export interface ButtonSlots {
 </script>
 
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, mergeProps } from 'vue'
 import { Primitive } from 'reka-ui'
 import { useAppConfig } from '#imports'
 import { useComponentProps } from '../composables/useComponentProps'
@@ -68,7 +68,8 @@ import { tv } from '../utils/tv'
 defineOptions({ inheritAttrs: false })
 
 const _props = withDefaults(defineProps<ButtonProps>(), {
-  type: 'button'
+  type: 'button',
+  block: undefined
 })
 const slots = defineSlots<ButtonSlots>()
 
@@ -90,12 +91,23 @@ const icon = computed(() => {
 })
 const loadingLabel = computed(() => Boolean(props.loading) && hasLabel.value)
 const rootAs = computed(() => props.as || (props.to ? 'a' : 'button'))
+const isButton = computed(() => rootAs.value === 'button')
 const isDisabled = computed(() => Boolean(props.disabled || props.loading))
 
-const ui = computed(() => tv({
+// Runs before the consumer's click listener so a disabled link never navigates or fires it.
+function onClick(event: MouseEvent) {
+  if (isDisabled.value) {
+    event.preventDefault()
+    event.stopImmediatePropagation()
+  }
+}
+
+const recipe = computed(() => tv({
   extend: theme,
   ...(appConfig.ui?.button || {})
-})({
+}))
+
+const ui = computed(() => recipe.value({
   color: props.color,
   variant: props.variant,
   weight: props.weight,
@@ -112,12 +124,16 @@ const ui = computed(() => tv({
 <template>
   <Primitive
     data-slot="base"
-    v-bind="$attrs"
+    v-bind="mergeProps({ onClick }, $attrs)"
     :as="rootAs"
-    :type="rootAs === 'button' ? props.type : undefined"
-    :href="!props.as && props.to ? props.to : undefined"
+    :type="isButton ? props.type : undefined"
+    :href="!props.as && props.to && !isDisabled ? props.to : undefined"
     :to="props.as && props.to ? props.to : undefined"
-    :disabled="isDisabled"
+    :disabled="isButton ? isDisabled : undefined"
+    :aria-disabled="!isButton && isDisabled ? 'true' : undefined"
+    :tabindex="!isButton && isDisabled ? -1 : undefined"
+    :data-disabled="isDisabled ? '' : undefined"
+    :aria-busy="props.loading ? 'true' : undefined"
     :class="ui.base({ class: [props.ui?.base, props.class] })"
   >
     <span

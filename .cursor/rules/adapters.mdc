@@ -8,9 +8,9 @@ alwaysApply: false
 
 Full map: `src/README.md`.
 
-- `templates.ts` turns `src/theme` exports into `#build/ui/*`, `ui.css`, `ui.static.css`, and `types/ui.d.ts`. Both adapters call `getTemplates`.
-- `module.ts`: alias `#ui`, `addPlugin(colors)`, `addComponentsDir`, `addImports`, templates, Tailwind via `vite:extend`.
-- `unplugin.ts`: write templates to `node_modules/.nuxt-ui`, alias `#build` and `#imports`. `createViteIntegrations` returns real Vite plugins.
+- `templates.ts` turns `src/theme` exports into `#build/ui/*`, `ui.css`, and `types/ui.d.ts`. Both adapters call `getTemplates`.
+- `module.ts`: alias `#ui`, `addComponentsDir` (ignores `**/*.stories.*`), `addImports`, templates, Tailwind via `vite:extend`. No runtime plugin is registered today.
+- `unplugin.ts`: write templates to `node_modules/.nuxt-ui`, alias `#build` and `#imports`. `createViteIntegrations` returns real Vite plugins. The `./unplugin` export is Vite-only.
 - `vite.ts`: return `[AcharehUIPlugin.vite, ...createViteIntegrations].flat()`. Consumers place `ui()` after `vue()`.
 - Component resolvers stay `enforce: 'post'`. Do not return those plugins from `config()`.
 - Do not re-export `src/runtime/types` from `module.ts`.

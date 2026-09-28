@@ -8,6 +8,10 @@ type InputTheme = ComponentConfig<typeof theme>
 export interface InputProps {
   id?: string
   modelValue?: string
+  /**
+   * @defaultValue 'text'
+   */
+  type?: 'text' | 'search' | 'tel' | 'url' | 'email' | 'password' | (string & {})
   placeholder?: string
   /**
    * @defaultValue 'bold'
@@ -34,13 +38,20 @@ export interface InputProps {
    */
   align?: keyof InputTheme['variants']['align']
   /**
-   * @defaultValue 'rtl'
+   * Text direction of a filled field. Falls back to the `UApp` direction, then `rtl`.
    */
   direction?: 'rtl' | 'ltr'
+  /**
+   * Text direction of an empty field.
+   * @defaultValue `direction`
+   */
   emptyDirection?: 'rtl' | 'ltr'
   readonly?: boolean
   disabled?: boolean
   clearable?: boolean
+  /**
+   * Numeric keyboard, and Persian or Arabic digits are typed as English digits.
+   */
   numeric?: boolean
   /**
    * @defaultValue 'پاک کردن'
@@ -65,7 +76,7 @@ export interface InputSlots {
 
 <script setup lang="ts">
 import { computed, nextTick, useTemplateRef } from 'vue'
-import { Primitive, useId } from 'reka-ui'
+import { Primitive, injectConfigProviderContext, useId } from 'reka-ui'
 import { useAppConfig } from '#imports'
 import { useComponentProps } from '../composables/useComponentProps'
 import { toEnglishDigits } from '../utils/digits'
@@ -73,32 +84,37 @@ import { tv } from '../utils/tv'
 
 defineOptions({ inheritAttrs: false })
 
-const _props = defineProps<InputProps>()
+const _props = withDefaults(defineProps<Omit<InputProps, 'modelValue'>>(), {
+  type: 'text'
+})
+const modelValue = defineModel<string>()
 const slots = defineSlots<InputSlots>()
 const emit = defineEmits<{
-  'update:modelValue': [value: string]
   clear: []
   enter: []
 }>()
 
 const props = useComponentProps('input', _props)
 const appConfig = useAppConfig()
+const configProvider = injectConfigProviderContext(null)
 const fallbackId = useId()
 const inputEl = useTemplateRef<HTMLInputElement>('inputEl')
 
 const inputId = computed(() => props.id || fallbackId)
-const isFilled = computed(() => (props.modelValue ?? '').length > 0)
-const direction = computed(() => props.direction ?? 'rtl')
+const isFilled = computed(() => (modelValue.value ?? '').length > 0)
+const direction = computed(() => props.direction ?? configProvider?.dir?.value ?? 'rtl')
 const resolvedDirection = computed(() => {
   const emptyDirection = props.emptyDirection ?? direction.value
   return isFilled.value ? direction.value : emptyDirection
 })
 const showClear = computed(() => Boolean(props.clearable) && isFilled.value && !props.disabled && !props.readonly)
 
-const ui = computed(() => tv({
+const recipe = computed(() => tv({
   extend: theme,
   ...(appConfig.ui?.input || {})
-})({
+}))
+
+const ui = computed(() => recipe.value({
   weight: props.weight,
   state: props.state,
   radius: props.radius,
@@ -110,7 +126,21 @@ const ui = computed(() => tv({
 }))
 
 function onInput(event: Event) {
-  emit('update:modelValue', toEnglishDigits((event.target as HTMLInputElement).value))
+  const el = event.target as HTMLInputElement
+  if (!props.numeric) {
+    modelValue.value = el.value
+    return
+  }
+
+  const value = toEnglishDigits(el.value)
+  if (value !== el.value) {
+    const caret = el.selectionStart
+    el.value = value
+    if (caret !== null) {
+      el.setSelectionRange(caret, caret)
+    }
+  }
+  modelValue.value = value
 }
 
 function focus() {
@@ -122,7 +152,7 @@ function blur() {
 }
 
 function onClear() {
-  emit('update:modelValue', '')
+  modelValue.value = ''
   emit('clear')
   nextTick(() => focus())
 }
@@ -165,9 +195,10 @@ defineExpose({ focus, blur })
           :id="inputId"
           ref="inputEl"
           data-slot="base"
+          :aria-invalid="props.state === 'error' ? 'true' : undefined"
           v-bind="$attrs"
-          :value="props.modelValue"
-          type="text"
+          :value="modelValue"
+          :type="props.type"
           :placeholder="props.placeholder"
           :readonly="props.readonly"
           :disabled="props.disabled"

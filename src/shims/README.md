@@ -6,7 +6,7 @@
 
 | فایل | کار |
 | --- | --- |
-| `imports.ts` | `useAppConfig` خالی، `useHead` خالی، `defineNuxtPlugin` همان تابع را برمی‌گرداند. |
+| `imports.ts` | `useAppConfig` خالی. تنها auto-importی که runtime امروز می‌خواند. |
 | `app-config.ts` | `{ ui: getDefaultConfig() }` برای resolve شدن تایپ. |
 
 ## قرارداد

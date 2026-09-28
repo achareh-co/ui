@@ -17,7 +17,7 @@ playgrounds/vue     مصرف به‌صورت پلاگین Vite
 
 نقشهٔ کار هر پوشه در `README.md` همان پوشه است. نقطهٔ ورود ایجنت‌ها [`AGENTS.md`](AGENTS.md) است. داک ابزارها در [`.agents/skills/`](.agents/skills) و ایندکس [`docs/llms/`](docs/llms/README.md) است.
 
-اولویت استایل: `prop` صریح، بعد `app.config.ui`، بعد `defaultVariants` داخل تم. `class` و `ui` با `tailwind-merge` روی کلاس‌های تم می‌نشینند.
+اولویت استایل: `prop` صریح، بعد `withDefaults` کامپوننت (برای `color`، `size` و `variant` خالی است)، بعد `app.config.ui.<name>.defaultVariants`، بعد `defaultVariants` داخل تم. `class` و `ui` با `tailwind-merge` روی کلاس‌های تم می‌نشینند.
 
 ## توسعه
 
@@ -132,6 +132,19 @@ app.use(ui)
 }
 ```
 
+رنگ semantic تازه (مثلاً `brand`) را در گزینهٔ `theme.colors` ماژول یا `ui()` اضافه کنید تا دکمه variant `color="brand"` بگیرد. خودِ رنگ را هم باید در `@theme` اپ تعریف کنید، وگرنه کلاس‌ها ساخته می‌شوند ولی رنگی ندارند:
+
+```css
+@theme {
+  --color-brand: #7c3aed;
+  --color-on-brand: #ffffff;
+  --color-brand-container: #ede9fe;
+  --color-brand-container-hover: #ddd6fe;
+  --color-brand-container-focused: #c4b5fd;
+  --color-on-brand-container: #2e1065;
+}
+```
+
 ## فاصله (spacing)
 
 کلید کلاس همان پلهٔ فیگما است. `p-4`، `gap-4` و `w-4` پیش‌فرض ۸px هستند. شبکهٔ ۴px تیلویند این‌جا نیست: `p-8` برابر ۱۶px است. کلیدها از `0` تا `53` به‌علاوهٔ `px` (۱px) هستند.
@@ -156,6 +169,8 @@ app.use(ui)
 نام کلاس همان توکن فیگما است. `rounded-sm` برابر ۸px است، نه ۴px پیش‌فرض Tailwind. `rounded-xs` برابر ۴px، `rounded-md` برابر ۱۲px، `rounded-lg` برابر ۱۶px و `rounded-full` برابر ۹۹۹px است.
 
 ضخامت: `border-xs` برابر ۱px، `border-sm` برابر ۲px، `border-md` برابر ۴px، `border-lg` برابر ۸px و `border-none` برابر ۰ است. کلاس `border` همان ۱px (`border-xs`) است. کلاس‌های عددی Tailwind به همان پله‌ها وصل‌اند: `border-0` برابر none، `border-2` برابر sm، `border-4` برابر md و `border-8` برابر lg.
+
+`border-none` علاوه بر ضخامت صفر، `border-style: none` خودِ Tailwind را هم می‌گذارد. پس `border-none hover:border-xs` در hover هم border نشان نمی‌دهد. اگر قرار است حالتی بعداً border بگیرد، از `border-0` استفاده کنید.
 
 `--ui-radius` دیگر مقیاس را عوض نمی‌کند. برای عوض کردن یک پله، بعد از `@import "@achareh/ui"` بنویسید:
 
@@ -225,7 +240,7 @@ export const ui = {
 
 ```ts
 // .storybook/main.ts
-import { dirname } from 'node:path'
+import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import vue from '@vitejs/plugin-vue'
 import { mergeConfig } from 'vite'
@@ -233,10 +248,12 @@ import type { StorybookConfig } from '@storybook/vue3-vite'
 import uiPlugin from '@achareh/ui/vite'
 import { ui } from '../app/ui'
 
-const componentsDir = dirname(fileURLToPath(import.meta.resolve('@achareh/ui/components/Button.stories.ts')))
+const packageDir = dirname(fileURLToPath(import.meta.resolve('@achareh/ui/package.json')))
+const componentsDir = join(packageDir, 'dist/runtime/components')
 
 const config: StorybookConfig = {
-  stories: [`${componentsDir}/**/*.stories.ts`],
+  // Published stories are compiled to `.js`; `.ts` only exists in a linked workspace.
+  stories: [`${componentsDir}/**/*.stories.@(js|ts)`],
   addons: [
     '@storybook/addon-docs',
     '@storybook/addon-themes',
@@ -253,7 +270,7 @@ const config: StorybookConfig = {
   },
   async viteFinal(viteConfig) {
     return mergeConfig(viteConfig, {
-      plugins: [vue(), ...uiPlugin({ ui })]
+      plugins: [vue(), ...uiPlugin({ ui, dts: false })]
     })
   }
 }
@@ -321,7 +338,7 @@ storybook dev -p 6006 --host 127.0.0.1
 }
 ```
 
-سوییچ تم در نوار Storybook کلاس `dark` را روی `html` می‌گذارد. استوری جدید لازم نیست؛ با عوض کردن CSS یا آبجکت `ui`، همان استوری‌های `Button` و `Input` پیش‌فرض شما را نشان می‌دهند.
+سوییچ تم در نوار Storybook کلاس `dark` را روی `html` می‌گذارد. استوری جدید لازم نیست؛ با عوض کردن CSS یا آبجکت `ui`، همان استوری‌های `Button` و `Input` پیش‌فرض شما را نشان می‌دهند. استوری‌ها variantها را در `args` صریح نمی‌فرستند تا `defaultVariants` شما برنده شود؛ فقط استوری‌های ماتریسی (مثل `Weights`) همان variant را عمداً عوض می‌کنند.
 
 ## توکن‌های فیگما
 

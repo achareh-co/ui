@@ -8,9 +8,3 @@ export const appConfig = reactive({
 export function useAppConfig() {
   return appConfig
 }
-
-export function defineNuxtPlugin<T>(plugin: T): T {
-  return plugin
-}
-
-export function useHead(_input?: unknown) {}

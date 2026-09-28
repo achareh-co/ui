@@ -13,8 +13,8 @@ const inverseColors = [
 const neutralColors = ['neutral', 'neutral-low', 'neutral-container', 'neutral-variant', 'inverse-neutral'] as const
 const fixedColors = ['primary-fixed', 'secondary-fixed', 'tertiary-fixed'] as const
 
-const surfaceOutline = 'bg-surface-container-low hover:not-disabled:bg-surface-container-low-hover active:not-disabled:bg-surface-container-low-focused focus-visible:not-disabled:bg-surface-container-low-focused'
-const inverseSurfaceOutline = 'bg-inverse-surface hover:not-disabled:bg-inverse-surface-hover active:not-disabled:bg-inverse-surface-focused focus-visible:not-disabled:bg-inverse-surface-focused'
+const surfaceOutline = 'bg-surface-container-low hover:not-data-disabled:bg-surface-container-low-hover active:not-data-disabled:bg-surface-container-low-focused focus-visible:not-data-disabled:bg-surface-container-low-focused'
+const inverseSurfaceOutline = 'bg-inverse-surface hover:not-data-disabled:bg-inverse-surface-hover active:not-data-disabled:bg-inverse-surface-focused focus-visible:not-data-disabled:bg-inverse-surface-focused'
 
 const inlinePadding = {
   dense: 'px-2',
@@ -39,27 +39,27 @@ const minHeight = {
 } as const
 
 function solid(bg: string, fg: string) {
-  return `bg-${bg} text-${fg} hover:not-disabled:bg-${bg}/high active:not-disabled:bg-${bg}/strong focus-visible:not-disabled:bg-${bg}/strong`
+  return `bg-${bg} text-${fg} hover:not-data-disabled:bg-${bg}/high active:not-data-disabled:bg-${bg}/strong focus-visible:not-data-disabled:bg-${bg}/strong`
 }
 
 function softContainer(bg: string, fg: string) {
-  return `bg-${bg} text-${fg} hover:not-disabled:bg-${bg}-hover active:not-disabled:bg-${bg}-focused focus-visible:not-disabled:bg-${bg}-focused`
+  return `bg-${bg} text-${fg} hover:not-data-disabled:bg-${bg}-hover active:not-data-disabled:bg-${bg}-focused focus-visible:not-data-disabled:bg-${bg}-focused`
 }
 
 function softAlpha(bg: string, fg: string) {
-  return `bg-${bg}/weak text-${fg} hover:not-disabled:bg-${bg}/low active:not-disabled:bg-${bg}/light focus-visible:not-disabled:bg-${bg}/light`
+  return `bg-${bg}/weak text-${fg} hover:not-data-disabled:bg-${bg}/low active:not-data-disabled:bg-${bg}/light focus-visible:not-data-disabled:bg-${bg}/light`
 }
 
 function softFixed(bg: string, fg: string, hover: string) {
-  return `bg-${bg} text-${fg} hover:not-disabled:bg-${hover} active:not-disabled:bg-${hover} focus-visible:not-disabled:bg-${hover}`
+  return `bg-${bg} text-${fg} hover:not-data-disabled:bg-${hover} active:not-data-disabled:bg-${hover} focus-visible:not-data-disabled:bg-${hover}`
 }
 
 function outline(border: string, fg: string, background = surfaceOutline) {
-  return `border-xs border-solid border-${border}/light text-${fg} ${background} hover:not-disabled:border-${border}/medium`
+  return `border-xs border-solid border-${border}/light text-${fg} ${background} hover:not-data-disabled:border-${border}/medium`
 }
 
 function ghost(fg: string, overlay = fg) {
-  return `bg-transparent text-${fg} hover:not-disabled:bg-${overlay}/weak active:not-disabled:bg-${overlay}/low focus-visible:not-disabled:bg-${overlay}/low`
+  return `bg-transparent text-${fg} hover:not-data-disabled:bg-${overlay}/weak active:not-data-disabled:bg-${overlay}/low focus-visible:not-data-disabled:bg-${overlay}/low`
 }
 
 function recipes(color: string, classes: Record<'solid' | 'soft' | 'outline' | 'ghost', string>) {
@@ -105,8 +105,8 @@ export default (options: Required<ModuleOptions> & { theme: { colors: string[], 
   return {
     slots: {
       base: [
-        'relative inline-flex flex-nowrap items-center justify-center gap-0 align-middle text-center whitespace-nowrap no-underline appearance-none cursor-pointer select-none border-0 border-transparent disabled:cursor-not-allowed',
-        'focus-visible:not-disabled:border-transparent focus-visible:not-disabled:shadow-[0_0_0_3px_var(--color-primary),0_0_0_1px_var(--color-surface)]',
+        'relative inline-flex flex-nowrap items-center justify-center gap-0 align-middle text-center whitespace-nowrap no-underline appearance-none cursor-pointer select-none border-0 border-transparent data-disabled:cursor-not-allowed',
+        'focus-visible:not-data-disabled:border-transparent focus-visible:not-data-disabled:shadow-[0_0_0_3px_var(--color-primary)]',
         options.theme.transitions && 'transition-[background-color,color,border-color,box-shadow] duration-200 ease-[ease]'
       ],
       leading: 'inline-flex shrink-0 items-center justify-center leading-none [&_svg]:shrink-0',
@@ -200,10 +200,10 @@ export default (options: Required<ModuleOptions> & { theme: { colors: string[], 
         outline: outline('white-fixed', 'white-fixed'),
         ghost: ghost('white-fixed')
       }),
-      { variant: 'solid', class: 'disabled:bg-surface-container-low disabled:text-on-surface-variant' },
-      { variant: 'soft', class: 'disabled:bg-on-surface/weak disabled:text-on-surface/regular' },
-      { variant: 'outline', class: 'disabled:bg-transparent disabled:text-on-surface-variant disabled:border-outline-variant' },
-      { variant: 'ghost', class: 'disabled:bg-transparent disabled:text-on-surface-variant' },
+      { variant: 'solid', class: 'data-disabled:bg-surface-container-low data-disabled:text-on-surface-variant' },
+      { variant: 'soft', class: 'data-disabled:bg-on-surface/weak data-disabled:text-on-surface/regular' },
+      { variant: 'outline', class: 'data-disabled:bg-transparent data-disabled:text-on-surface-variant data-disabled:border-outline-variant' },
+      { variant: 'ghost', class: 'data-disabled:bg-transparent data-disabled:text-on-surface-variant' },
       ...(Object.keys(inlinePadding) as Array<keyof typeof inlinePadding>).map(paddingX => ({
         paddingX,
         icon: 'none',

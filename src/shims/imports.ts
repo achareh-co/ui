@@ -6,9 +6,3 @@
 export function useAppConfig(): { ui?: Record<string, any> } {
   return {}
 }
-
-export function useHead(_input?: any) {}
-
-export function defineNuxtPlugin<T>(plugin: T): T {
-  return plugin
-}

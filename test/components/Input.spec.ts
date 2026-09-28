@@ -105,6 +105,41 @@ describe('Input', () => {
     expect(filled.find('[data-slot="field"]').attributes('dir')).toBe('ltr')
   })
 
+  it('keeps Persian digits when the field is not numeric', async () => {
+    const wrapper = mount(Input, {
+      props: { modelValue: '' }
+    })
+
+    await wrapper.find('input').setValue('خیابان ۱۲')
+    expect(wrapper.emitted('update:modelValue')?.[0]).toEqual(['خیابان ۱۲'])
+    expect(wrapper.find('input').attributes('inputmode')).toBeUndefined()
+  })
+
+  it('works without v-model', async () => {
+    const wrapper = mount(Input, {
+      props: { clearable: true, direction: 'ltr', emptyDirection: 'rtl' }
+    })
+
+    expect(wrapper.find('[data-slot="clear"]').exists()).toBe(false)
+    await wrapper.find('input').setValue('0912')
+    expect(wrapper.find('[data-slot="clear"]').exists()).toBe(true)
+    expect(wrapper.find('[data-slot="field"]').attributes('dir')).toBe('ltr')
+
+    await wrapper.find('[data-slot="clear"]').trigger('click')
+    expect(wrapper.find('input').element.value).toBe('')
+    expect(wrapper.find('[data-slot="clear"]').exists()).toBe(false)
+  })
+
+  it('sets the input type', () => {
+    expect(mount(Input).find('input').attributes('type')).toBe('text')
+    expect(mount(Input, { props: { type: 'password' } }).find('input').attributes('type')).toBe('password')
+  })
+
+  it('marks an error field invalid', () => {
+    expect(mount(Input, { props: { state: 'error' } }).find('input').attributes('aria-invalid')).toBe('true')
+    expect(mount(Input).find('input').attributes('aria-invalid')).toBeUndefined()
+  })
+
   it('emits enter', async () => {
     const wrapper = mount(Input)
     await wrapper.find('input').trigger('keydown.enter')

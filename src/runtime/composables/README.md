@@ -13,9 +13,10 @@
 
 `useComponentProps(name, props)` این‌ها را عوض می‌کند:
 
-- `ui`: `defu(props.ui, appConfig.ui[name].slots)` — آبجکت نمونه برنده است.
+- `ui`: `defu(props.ui, appConfig.ui[name].slots)` — آبجکت نمونه برنده است. `tv()` هم همان `slots` را از `extend` می‌گیرد، ولی آن‌جا کلاس variant و `compoundVariants` بعد از slot می‌آید و برنده می‌شود. این ادغام دوم است که `slots.base: 'px-10'` کانفیگ را روی `px-4` variant می‌نشاند؛ حذفش نکن.
 - هر کلید دیگر: اگر روی props مقدار `undefined` نباشد همان برمی‌گردد؛ وگرنه `appConfig.ui[name].defaultVariants[key]`.
 - `theme.defaultVariants` را این پراکسی نمی‌خواند. آن فقط ورودی `tv()` است.
+- prop بولی که در `withDefaults` نیامده را Vue `false` می‌کند و پراکسی آن را مقدار صریح می‌بیند. variant بولی که باید از کانفیگ بیاید، در `withDefaults` مقدار `undefined` بگیرد (`block` در `Button`).
 
 ## نقشهٔ composable جدید
 

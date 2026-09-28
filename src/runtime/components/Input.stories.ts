@@ -21,36 +21,31 @@ const meta = {
   title: 'Components/Input',
   component: Input,
   tags: ['autodocs'],
+  // Variant args stay unset so `app.config.ui.input.defaultVariants` shows through.
   argTypes: {
     modelValue: { control: 'text' },
     placeholder: { control: 'text' },
-    weight: { control: { type: 'select' }, options: WEIGHTS },
-    state: { control: { type: 'select' }, options: STATES },
-    radius: { control: { type: 'select' }, options: RADII },
-    paddingX: { control: { type: 'select' }, options: PADDINGS },
-    paddingY: { control: { type: 'select' }, options: PADDINGS },
+    type: { control: 'text', table: { defaultValue: { summary: 'text' } } },
+    weight: { control: { type: 'select' }, options: WEIGHTS, table: { defaultValue: { summary: 'bold' } } },
+    state: { control: { type: 'select' }, options: STATES, table: { defaultValue: { summary: 'neutral' } } },
+    radius: { control: { type: 'select' }, options: RADII, table: { defaultValue: { summary: 'xs' } } },
+    paddingX: { control: { type: 'select' }, options: PADDINGS, table: { defaultValue: { summary: 'cozy' } } },
+    paddingY: { control: { type: 'select' }, options: PADDINGS, table: { defaultValue: { summary: 'comfortable' } } },
     readonly: { control: 'boolean' },
     disabled: { control: 'boolean' },
     clearable: { control: 'boolean' },
     numeric: { control: 'boolean' },
-    direction: { control: { type: 'select' }, options: DIRECTIONS },
+    direction: { control: { type: 'select' }, options: DIRECTIONS, table: { defaultValue: { summary: 'UApp dir' } } },
     emptyDirection: { control: { type: 'select' }, options: [...DIRECTIONS, undefined] },
-    align: { control: { type: 'select' }, options: ALIGNS }
+    align: { control: { type: 'select' }, options: ALIGNS, table: { defaultValue: { summary: 'start' } } }
   },
   args: {
     modelValue: '',
     placeholder: 'متن را وارد کنید',
-    weight: 'bold',
-    state: 'neutral',
-    radius: 'xs',
-    paddingX: 'cozy',
-    paddingY: 'comfortable',
     readonly: false,
     disabled: false,
     clearable: false,
-    numeric: false,
-    direction: 'rtl',
-    align: 'start'
+    numeric: false
   }
 } satisfies Meta<typeof Input>
 

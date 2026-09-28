@@ -49,6 +49,8 @@ export default defineNuxtModule<ModuleOptions>({
 
     addComponentsDir({
       path: resolver.resolve('./runtime/components'),
+      pattern: '**/*.vue',
+      ignore: ['**/*.stories.*'],
       pathPrefix: false,
       prefix: options.prefix
     })

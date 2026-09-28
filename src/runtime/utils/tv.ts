@@ -1,5 +1,8 @@
 import { createTV } from 'tailwind-variants'
 
+const isTypeRole = (value: string) => /^(?:display|headline|title|body|label|caption)-[a-z-]+$/.test(value)
+const isAny = () => true
+
 const create = createTV({
   twMerge: true,
   twMergeConfig: {
@@ -9,7 +12,16 @@ const create = createTV({
         'border-w-x': [{ 'border-x': ['xs', 'sm', 'md', 'lg'] }],
         'border-w-y': [{ 'border-y': ['xs', 'sm', 'md', 'lg'] }],
         'border-w-s': [{ 'border-s': ['xs', 'sm', 'md', 'lg'] }],
-        'border-w-e': [{ 'border-e': ['xs', 'sm', 'md', 'lg'] }]
+        'border-w-e': [{ 'border-e': ['xs', 'sm', 'md', 'lg'] }],
+        'typo-role': [{ typo: [isTypeRole] }],
+        'typo-size': [{ 'typo-size': [isAny] }],
+        'typo-leading': [{ 'typo-leading': [isAny] }],
+        'typo-weight': [{ 'typo-weight': [isAny] }],
+        'typo-tracking': [{ 'typo-tracking': [isAny] }],
+        'typo-family': [{ 'typo-family': [isAny] }]
+      },
+      conflictingClassGroups: {
+        'typo-role': ['typo-size', 'typo-leading', 'typo-weight', 'typo-tracking', 'typo-family']
       }
     }
   }

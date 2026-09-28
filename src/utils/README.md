@@ -6,7 +6,7 @@
 
 | فایل | کار |
 | --- | --- |
-| `defaults.ts` | `ModuleOptions`, `ThemeOptions`, `defaultOptions`, `getDefaultConfig()`. |
+| `defaults.ts` | `ModuleOptions`, `ThemeOptions`, `defaultOptions`, `getDefaultConfig()`. `theme.colors` پیش‌فرض همان هفت نقش فیگماست (`primary` تا `error`، با `tertiary`)؛ رنگ تازه با `defu` به این آرایه اضافه می‌شود و کلیدهای `@theme` لازمش در JSDoc همان فیلد است. |
 | `spacing.ts` | `spacingScale` و `generateSpacingCss`: پلهٔ فیگما به پیکسل، و CSS متغیر `--ui-spacing-*`. |
 | `borders.ts` | `borderRadiusScale`، `borderWidthScale` و `generateBordersCss`: توکن فیگما به پیکسل، و CSS متغیر `--ui-radius-*` و `--ui-border-width-*`. |
 | `typography.ts` | `typeScale`، `fontFamilyBrand` و `generateTypographyCss`: نقش RTL-Fa و CSS متغیر `--ui-font-*` به‌علاوهٔ یوتیلیتی `typo-*`. |
@@ -16,8 +16,8 @@
 ## نقشه
 
 - آپشن جدید ماژول یا تم → `ThemeOptions` / `ModuleOptions` و مقدار در `defaultOptions`.
-- تبدیل روی آبجکت تم (خالی کردن کلاس، prefix، جابه‌جایی `primary`/`md`) → تابع جدید در `theme.ts` و صدا زدن آن از `resolveTheme`، به همان ترتیب فعلی.
-- `applyDefaultVariants` فقط `color: 'primary'` و `size: 'md'` را با پیش‌فرض سراسری عوض می‌کند. variantهای دیگر را این‌جا حدس نزن.
+- تبدیل روی آبجکت تم (خالی کردن کلاس، prefix، جابه‌جایی `primary`) → تابع جدید در `theme.ts` و صدا زدن آن از `resolveTheme`، به همان ترتیب فعلی.
+- `applyDefaultVariants` فقط `color: 'primary'` را با `theme.defaultVariants.color` عوض می‌کند. کامپوننت‌ها variant `size` ندارند؛ variantهای دیگر را این‌جا حدس نزن.
 - `getDefaultConfig` دیگر نام پالت Tailwind ندارد. رنگ از `colors.ts` می‌آید.
 - پلهٔ spacing از `figma/configs/spacing.system.tokens.json` می‌آید. `pnpm tokens:spacing` همان را در `spacingScale` می‌نویسد. `generateThemeCss` آن آرایه را می‌خواند. کلید، نام یوتیلیتی است (`4` → `p-4`) و مقدار، پیکسل است (`4` = ۸px، `8` = ۱۶px، `px` = ۱px).
 - شعاع و ضخامت border از `figma/configs/border-radius.system.tokens.json` و `border-width.system.tokens.json` می‌آیند. `pnpm tokens:radius` و `pnpm tokens:border-width` آرایه‌ها را می‌نویسند. `borderWidthNumericBridge` را اسکریپت عوض نمی‌کند. کلید، نام یوتیلیتی است (`sm` → `rounded-sm` و `border-sm`) و مقدار، پیکسل است (`rounded-sm` = ۸px، `rounded-xs` = ۴px، `border-xs` = ۱px). اورراید با `--ui-radius-*` و `--ui-border-width-*` است. `--ui-radius` دیگر خوانده نمی‌شود.

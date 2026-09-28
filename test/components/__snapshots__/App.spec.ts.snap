@@ -1,0 +1,7 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`App > renders an rtl root by default 1`] = `
+"<div data-slot="root" dir="rtl" class="isolate min-h-screen bg-default text-default antialiased">
+  <p>متن</p>
+</div>"
+`;

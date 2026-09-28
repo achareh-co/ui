@@ -3,8 +3,9 @@ import { resolve } from 'node:path'
 
 const root = resolve(import.meta.dirname, '..')
 
-export function jsonPath(defaultRelative) {
-  const args = process.argv.slice(2)
+/** pnpm forwards the `--` separator to the script, so it is not a path. */
+export function jsonPath(defaultRelative, argv = process.argv.slice(2)) {
+  const args = argv.filter(arg => arg !== '--')
   if (args.length > 1) {
     throw new Error('Pass at most one JSON path')
   }

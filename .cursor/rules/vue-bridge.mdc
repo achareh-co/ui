@@ -9,8 +9,9 @@ alwaysApply: false
 Maps: `src/runtime/vue/README.md`, `src/runtime/vue/stubs/README.md`, `src/runtime/plugins/README.md`, `src/shims/README.md`.
 
 - `plugin.ts` `install` applies `ui` overrides. Vite `ui({ ui })` does not replace `app.use`. Color variables come from the generated stylesheet, not from this install.
-- Keep `useAppConfig`, `useHead`, and `defineNuxtPlugin` signatures aligned across:
+- `#imports` exposes only `useAppConfig` today. Keep its signature aligned across:
   - `src/shims/imports.ts` (typecheck, no behavior)
-  - `src/runtime/vue/stubs/imports.ts` (Vite runtime)
+  - `src/runtime/vue/stubs/imports.ts` (Vite runtime, plus `applyUiOverrides`)
   - `test/mocks/imports.ts` (Vitest)
-- Shims must not touch the DOM. The Vue stub's `useHead` only writes the color `<style>` and must no-op when `document` is missing.
+- A runtime file that starts importing another Nuxt auto-import (`useHead`, `defineNuxtPlugin`, ...) must add it to all three in the same change.
+- Shims must not touch the DOM. A Vue stub that touches `document` must no-op when it is missing (SSR).

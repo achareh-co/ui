@@ -10,10 +10,11 @@ Full map: `src/runtime/components/README.md`. Copy `Button.vue`.
 
 - Props and slots interfaces go in a non-setup `<script>` so `src/runtime/types/index.ts` can re-export them.
 - `import theme from '#build/ui/<kebab>'`, then `useComponentProps('<key>', _props)`.
-- `const ui = computed(() => tv({ extend: theme, ...(appConfig.ui?.<key> || {}) })(variants))`.
+- Two computeds: `recipe = computed(() => tv({ extend: theme, ...(appConfig.ui?.<key> || {}) }))`, then `ui = computed(() => recipe.value(variants))`.
 - Render with Reka `Primitive` and `as`. `data-slot` equals the theme slot key.
 - Root class: `ui.<slot>({ class: [props.ui?.<slot>, props.class] })`.
-- With `inheritAttrs: false`, put `data-slot` before `v-bind="$attrs"`.
-- Do not add Tailwind classes in the SFC. Do not default `color` / `variant` / `size` or other theme variants (`weight`, `paddingX`, `paddingY`, `radius`) in `withDefaults`.
+- With `inheritAttrs: false`, put `data-slot` before `v-bind="$attrs"`. Internal listeners that must run first go through `mergeProps({ onClick }, $attrs)`.
+- Do not add Tailwind classes in the SFC. Do not default `color` / `variant` / `size` or other theme variants (`weight`, `paddingX`, `paddingY`, `radius`) in `withDefaults`. Boolean variants get `undefined` in `withDefaults` so app config can set them.
+- Disabled non-button roots: `aria-disabled="true"`, `tabindex="-1"`, no `href`, click blocked. Always set `data-disabled` and style it with `data-disabled:` in the theme.
 - File name is PascalCase without the `U` prefix.
-- Add `<Pascal>.stories.ts` beside the SFC. Storybook lives in `.storybook/`.
+- Add `<Pascal>.stories.ts` beside the SFC with no variant `args`. Storybook lives in `.storybook/`.

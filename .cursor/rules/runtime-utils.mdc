@@ -9,7 +9,8 @@ alwaysApply: false
 Full map: `src/runtime/utils/README.md` and `src/runtime/README.md`.
 
 - `tv()` must keep slot functions after an `app.config` spread and must keep `twMerge`. Figma border widths `xs` through `lg` stay in the border-width group so `border-xs` is not merged away as a color.
+- `typo-*` has its own merge groups: `typo-role` conflicts with `typo-size/leading/weight/tracking/family`. New custom utility prefixes need a classGroup and a case in `test/utils/tv.spec.ts`.
 - Do not bump `tailwind-variants` past the `3.2.2` pin.
 - Do not generate palette CSS here. Palette, semantic colors, and emphasis live in build-time `src/utils/colors.ts`.
-- `index.css` points `--ui-text*`, `--ui-bg*`, and `--ui-border*` at `--ui-color-*`, defines `animate-spinner-rotate` and `animate-spinner-dash`, and imports `#build/ui.css`. Those `--ui-color-*` variables change under `.dark`. Radius and border width live in generated `--ui-radius-*` / `--ui-border-width-*`, not `--ui-radius`. Type roles live in generated `--ui-font-size-*`, `--ui-leading-*`, `--ui-font-weight-*`, `--ui-tracking-*`, and `--ui-font-family-brand`.
+- `index.css` points `--ui-text*`, `--ui-bg*`, and `--ui-border*` at `--ui-color-*`, defines `animate-spinner-rotate` and `animate-spinner-dash`, and imports `#build/ui.css` (there is no static fallback). Those `--ui-color-*` variables change under `.dark`; the `--ui-text*` / `--ui-bg*` / `--ui-border*` block is declared on `:root, :host, .light, .dark` so a nested `.dark` or `.light` section re-resolves them. Radius and border width live in generated `--ui-radius-*` / `--ui-border-width-*`, not `--ui-radius`. Type roles live in generated `--ui-font-size-*`, `--ui-leading-*`, `--ui-font-weight-*`, `--ui-tracking-*`, and `--ui-font-family-brand`.
 - Do not import `src/theme` or `src/utils` from this folder.
